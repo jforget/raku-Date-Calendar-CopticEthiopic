@@ -1,0 +1,72 @@
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+use v6.c;
+
+use Date::Calendar::Strftime;
+use Date::Calendar::CopticEthiopic;
+
+unit class Date::Calendar::Coptic:ver<0.0.1>
+      does Date::Calendar::CopticEthiopic
+      does Date::Calendar::Strftime;
+
+=begin pod
+
+=head1 NAME
+
+Date::Calendar::Coptic - conversions from / to the Coptic calendar
+
+=head1 SYNOPSIS
+
+Converting a Gregorian date to Coptic
+
+=begin code :lang<perl6>
+
+use Date::Calendar::Coptic;
+
+my Date                     $Perlcon-Riga-grg;
+my Date::Calendar::Coptic   $Perlcon-Riga-cop;
+
+$Perlcon-Riga-grg .= new(2019, 8, 7);
+$Perlcon-Riga-cop .= new-from-date($Perlcon-Riga-grg);
+
+say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
+#--> Peftoou 1 Misra 1735
+
+=end code
+
+Converting a Coptic date to Gregorian
+
+=begin code :lang<perl6>
+
+use Date::Calendar::Coptic;
+
+my Date::Calendar::Coptic   $TPC-Pittsburgh-cop;
+my Date                     $TPC-Pittsburgh-grg;
+
+$TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
+$TPC-Pittsburgh-grg  = $TPC-Pittsburgh-cop.to-date;
+#--> 9 Bauna 1735 = 16 June 2019
+
+=end code
+
+=head1 DESCRIPTION
+
+Date::Calendar::Coptic is  a class  implementing the  Coptic calendar.
+This  calendar derives  from  the ancient  Egyptian  calendar. A  year
+consists of 12 months  with 30 days each, plus 5  or 6 additional days
+(epagomene) at  the end of  the year.  Leap years occurs  every fourth
+year, with no  adjustment for century years. The  calendar also define
+weeks  which last  for  7  days, beginning  on  sunday  and ending  on
+saturday.
+
+=head1 AUTHOR
+
+Jean Forget <JFORGET@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright © 2019 Jean Forget
+
+This library is  free software; you can redistribute  it and/or modify
+it under the Artistic License 2.0.
+
+=end pod
