@@ -1,12 +1,13 @@
-NAME
-====
+NOM
+===
 
-Date::Calendar::CopticEthiopic - conversions from / to the Coptic calendar and from / to the Ethiopic calendar
+Date::Calendar::CopticEthiopic - conversions depuis / vers le calendrier copte et depuis / vers le calendrier étrhiopien
 
 SYNOPSIS
 ========
 
-Converting a Gregorian date to both Coptic and Ethiopic
+Conversion  d'une date  grégorienne  vers le  calendrier  copte et  le
+calendrier éthiopien
 
 ```perl6
 use Date::Calendar::Coptic;
@@ -26,7 +27,8 @@ say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 #--> Rob 1 Nahas 2011
 ```
 
-Converting a Coptic date and an Ethiopic date to Gregorian
+Conversion  d'une  date  copte  et  d'une  date  éthiopienne  vers  le
+calendrier grégorien
 
 ```perl6
 use Date::Calendar::Coptic;
@@ -53,7 +55,7 @@ INSTALLATION
 zef install Date::Calendar::CopticEthiopic
 ```
 
-or
+ou bien
 
 ```shell
 git clone https://github.com/jforget/raku-Date-Calendar-CopticEthiopic.git
@@ -64,25 +66,26 @@ zef install .
 DESCRIPTION
 ===========
 
-Date::Calendar::CopticEthiopic is a  module distribution providing two
-classes,  Date::Calendar::Coptic   and  Date::Calendar::Ethiopic.  The
-corresponding  calendars   both  derive  from  the   ancient  Egyptian
-calendar. In  each, a year  consists of 12  months with 30  days each,
-plus 5 or 6  additional days (epagomene) at the end  of the year. Leap
-years occurs every fourth year,  with no adjustment for century years.
-The calendars  also define weeks which  last for 7 days,  beginning on
-sunday and ending on saturday.
+La distribution de  module Date::Calendar::CopticEthiopic fournit deux
+classes,   Date::Calendar::Coptic  et   Date::Calendar::Ethiopic.  Les
+calendriers   correspondant  dérivent   du   calendrier  égyptien   de
+l'Antiquité. Dans les  deux calendriers, une année est  composée de 12
+mois de 30 jours, plus  cinq ou six jours complémentaires (épagomènes)
+à la  fin de l'année. Une  année sur quatre est  une année bissextile,
+sans  ajustement  pour les  années  séculaires.  Les deux  calendriers
+comportent des semaines de 7 jours, du dimanche au samedi.
 
-AUTHOR
+AUTEUR
 ======
 
 Jean Forget <JFORGET@cpan.org>
 
-COPYRIGHT AND LICENSE
-=====================
+COPYRIGHT ET LICENCE
+====================
 
-Copyright © 2019 Jean Forget
+Copyright © 2019 Jean Forget, tous droits réservés.
 
-This library is  free software; you can redistribute  it and/or modify
-it under the Artistic License 2.0.
+Ce code constitue du logiciel libre. Vous pouvez le redistribuer et le
+modifier  en accord  avec  la  « licence  artistique  2.0 »  (Artistic
+License 2.0).
 
