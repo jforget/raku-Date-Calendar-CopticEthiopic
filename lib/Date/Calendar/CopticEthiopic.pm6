@@ -2,6 +2,45 @@
 use v6.c;
 unit role Date::Calendar::CopticEthiopic:ver<0.0.1>;
 
+has Int $.year  where { $_ ≥ 1 };
+has Int $.month where { 1 ≤ $_ ≤ 13 };
+has Int $.day   where { 1 ≤ $_ ≤ 30 };
+
+method _chek-build-args(Int $year, Int $month, Int $day) {
+
+  unless 1 ≤ $month ≤ 13 {
+    X::OutOfRange.new(:what<Month>, :got($month), :range<1..13>).throw;
+  }
+
+  if $month ≤ 12 {
+    unless 1 ≤ $day ≤ 30 {
+      X::OutOfRange.new(:what<Day>, :got($day), :range<1..30>).throw;
+    }
+  }
+
+  else {
+    if is-leap($year) {
+      unless 1 ≤ $day ≤ 6 {
+        X::OutOfRange.new(:what<Day>, :got($day), :range<1..6>).throw;
+      }
+    }
+    else {
+      unless 1 ≤ $day ≤ 5 {
+        X::OutOfRange.new(:what<Day>, :got($day), :range<1..5>).throw;
+      }
+    }
+  }
+}
+
+method _build-from-args(Int $year, Int $month, Int $day) {
+  $!year   = $year;
+  $!month  = $month;
+  $!day    = $day;
+}
+
+sub is-leap(Int $year) {
+  $year % 4 == 3;
+}
 
 =begin pod
 

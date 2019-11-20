@@ -8,6 +8,11 @@ unit class Date::Calendar::Coptic:ver<0.0.1>
       does Date::Calendar::CopticEthiopic
       does Date::Calendar::Strftime;
 
+method BUILD(Int:D :$year, Int:D :$month, Int:D :$day) {
+  $._chek-build-args($year, $month, $day);
+  $._build-from-args($year, $month, $day);
+}
+
 =begin pod
 
 =head1 NAME
