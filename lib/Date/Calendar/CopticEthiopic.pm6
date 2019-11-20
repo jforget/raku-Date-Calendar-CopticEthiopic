@@ -45,6 +45,12 @@ method daycount {
   + $.mjd-bias
 }
 
+method to-date($class = 'Date') {
+  # See "Learning Perl 6" page 177
+  my $d = ::($class).new-from-daycount($.daycount);
+  return $d;
+}
+
 method gist {
   sprintf("%04d-%02d-%02d", $.year, $.month, $.day);
 }
