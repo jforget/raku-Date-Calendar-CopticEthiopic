@@ -45,6 +45,26 @@ method daycount {
   + $.mjd-bias
 }
 
+method new-from-daycount(Int $count) {
+  my ($nb, $m, $d);  # zero-based values
+  my $y;
+
+  # zero-based count from the Coptic / Ethiopic epoch instead of the MJD epoch
+  $nb = $count - $.mjd-bias - 1;
+
+  $y   = floor($nb / 365.25);
+  $nb -= floor($y × 365.25);
+  $m   = floor($nb / 30);
+  $nb -= $m × 30;
+  $d   = $nb;
+
+  $.new(year => $y, month => $m + 1, day => $d + 1);
+}
+
+method new-from-date($date) {
+  $.new-from-daycount($date.daycount);
+}
+
 method to-date($class = 'Date') {
   # See "Learning Perl 6" page 177
   my $d = ::($class).new-from-daycount($.daycount);

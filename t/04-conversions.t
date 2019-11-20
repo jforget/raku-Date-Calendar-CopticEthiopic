@@ -37,7 +37,7 @@ my @tests = ( (  470,  1,  8,  186,  5, 12,  462,  5, 12 ),
               ( 2038, 11, 10, 1755,  3,  1, 2031,  3,  1 ),
               ( 2094,  7, 18, 1810, 11, 11, 2086, 11, 11 ),
              );
-plan 2 × @tests.elems;
+plan 6 × @tests.elems;
 
 for @tests -> $test {
   my ($yg, $mg, $dg, $yc, $mc, $dc, $ye, $me, $de) = $test;
@@ -46,11 +46,11 @@ for @tests -> $test {
   my $expected-gist = sprintf("%04d-%02d-%02d", $yg, $mg, $dg);
   is($d-cop.to-date.gist, $expected-gist);
 
-  #$expected-gist = sprintf("%04d-%02d-%02d", $ye, $me, $de);
-  #is($d-cop.to-date("Date::Calendar::Ethiopic").gist, $expected-gist);
+  $expected-gist = sprintf("%04d-%02d-%02d", $ye, $me, $de);
+  is($d-cop.to-date("Date::Calendar::Ethiopic").gist, $expected-gist);
 
-  #my Date::Calendar::Ethiopic $d-eth .= new-from-date($d-cop);
-  #is($d-eth.gist, $expected-gist);
+  my Date::Calendar::Ethiopic $d-eth .= new-from-date($d-cop);
+  is($d-eth.gist, $expected-gist);
 }
 
 for @tests -> $test {
@@ -60,11 +60,11 @@ for @tests -> $test {
   my $expected-gist = sprintf("%04d-%02d-%02d", $yg, $mg, $dg);
   is($d-eth.to-date.gist, $expected-gist);
 
-  #$expected-gist = sprintf("%04d-%02d-%02d", $yc, $mc, $dc);
-  #is($d-eth.to-date("Date::Calendar::Coptic").gist, $expected-gist);
+  $expected-gist = sprintf("%04d-%02d-%02d", $yc, $mc, $dc);
+  is($d-eth.to-date("Date::Calendar::Coptic").gist, $expected-gist);
 
-  #my Date::Calendar::Coptic $d-cop .= new-from-date($d-eth);
-  #is($d-cop.gist, $expected-gist);
+  my Date::Calendar::Coptic $d-cop .= new-from-date($d-eth);
+  is($d-cop.gist, $expected-gist);
 }
 
 done-testing;
