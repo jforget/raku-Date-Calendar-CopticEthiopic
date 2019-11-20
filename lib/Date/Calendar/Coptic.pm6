@@ -13,6 +13,10 @@ method BUILD(Int:D :$year, Int:D :$month, Int:D :$day) {
   $._build-from-args($year, $month, $day);
 }
 
+method mjd-bias {
+  -575337;
+}
+
 =begin pod
 
 =head1 NAME

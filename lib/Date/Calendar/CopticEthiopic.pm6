@@ -38,6 +38,21 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   $!day    = $day;
 }
 
+method daycount {
+    floor(365.25 × $.year)
+  + 30 × ($.month - 1)
+  + $.day
+  + $.mjd-bias
+}
+
+method gist {
+  sprintf("%04d-%02d-%02d", $.year, $.month, $.day);
+}
+
+method day-of-year {
+  $.day + 30 × ($.month - 1);
+}
+
 sub is-leap(Int $year) {
   $year % 4 == 3;
 }
