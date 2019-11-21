@@ -52,7 +52,7 @@ method new-from-daycount(Int $count) {
   # zero-based count from the Coptic / Ethiopic epoch instead of the MJD epoch
   $nb = $count - $.mjd-bias - 1;
 
-  $y   = floor($nb / 365.25);
+  $y   = floor(($nb + 0.75) / 365.25);
   $nb -= floor($y × 365.25);
   $m   = floor($nb / 30);
   $nb -= $m × 30;
