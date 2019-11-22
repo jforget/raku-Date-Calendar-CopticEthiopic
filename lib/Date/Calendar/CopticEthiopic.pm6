@@ -107,7 +107,7 @@ $Perlcon-Riga-cop .= new-from-date($Perlcon-Riga-grg);
 $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 
 say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
-#--> Peftoou 1 Misra 1735
+#--> Peftoou 1 Mesori 1735
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 #--> Rob 1 Nahas 2011
 
@@ -127,7 +127,7 @@ my Date                     $TPC-Pittsburgh-grg2;
 
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg1 = $TPC-Pittsburgh-cop.to-date;
-#--> 9 Bauna 1735 = 16 June 2019
+#--> 9 Paoni 1735 = 16 June 2019
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg2 = $TPC-Pittsburgh-eth.to-date;

@@ -3,6 +3,7 @@ use v6.c;
 
 use Date::Calendar::Strftime;
 use Date::Calendar::CopticEthiopic;
+use Date::Calendar::Ethiopic::Names;
 
 unit class Date::Calendar::Ethiopic:ver<0.0.1>
       does Date::Calendar::CopticEthiopic

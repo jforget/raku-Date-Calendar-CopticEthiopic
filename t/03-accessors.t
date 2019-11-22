@@ -6,8 +6,9 @@ use Test;
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
-plan  2  # classes
-   ×  6; # accessors
+plan  3  # objects
+   ×  6  # accessors
++ 8; # Eth names not ready
 
 my Date::Calendar::Coptic $dc .= new(year => 1736, month => 3, day => 10);
 
@@ -17,8 +18,23 @@ is($dc.year       ,  1736);
 is($dc.day-of-year,    70);
 is($dc.daycount   , 58807);
 is($dc.gist       , "1736-03-10");
-#is($dc.month-name, '???');
-#is($dc.day-name,   '???');
+is($dc.month-name , 'Hathor');
+is($dc.month-abbr , 'Hat');
+is($dc.day-name   , 'Peftoou');
+is($dc.day-abbr   , 'Pef');
+
+$dc .= new(year => 1735, month => 13, day => 6);
+
+is($dc.month      ,    13);
+is($dc.day        ,     6);
+is($dc.year       ,  1735);
+is($dc.day-of-year,   366);
+is($dc.daycount   , 58737);
+is($dc.gist       , '1735-13-06');
+is($dc.month-name , 'Pi Kogi Enavot');
+is($dc.month-abbr , 'Kou');
+is($dc.day-name   , 'Peftoou');
+is($dc.day-abbr   , 'Pef');
 
 my Date::Calendar::Ethiopic $de .= new(year => 2012, month => 3, day => 10);
 

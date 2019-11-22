@@ -3,6 +3,7 @@ use v6.c;
 
 use Date::Calendar::Strftime;
 use Date::Calendar::CopticEthiopic;
+use Date::Calendar::Coptic::Names;
 
 unit class Date::Calendar::Coptic:ver<0.0.1>
       does Date::Calendar::CopticEthiopic
@@ -15,6 +16,22 @@ method BUILD(Int:D :$year, Int:D :$month, Int:D :$day) {
 
 method mjd-bias {
   -575337;
+}
+
+method month-name {
+  Date::Calendar::Coptic::Names::month-name($.month);
+}
+
+method month-abbr {
+  Date::Calendar::Coptic::Names::month-abbr($.month);
+}
+
+method day-name {
+  Date::Calendar::Coptic::Names::day-name(($.daycount + 4) % 7);
+}
+
+method day-abbr {
+  Date::Calendar::Coptic::Names::day-abbr(($.daycount + 4) % 7);
 }
 
 =begin pod

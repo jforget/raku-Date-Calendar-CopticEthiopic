@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
 
-unit class Date::Calendar::Ethiopic;;Names:ver<0.0.1>;
+unit class Date::Calendar::Ethiopic::Names:ver<0.0.1>;
 
 =begin pod
 
