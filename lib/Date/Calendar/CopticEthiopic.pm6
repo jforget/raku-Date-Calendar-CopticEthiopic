@@ -146,6 +146,105 @@ years occurs every fourth year,  with no adjustment for century years.
 The calendars  also define weeks which  last for 7 days,  beginning on
 sunday and ending on saturday.
 
+=head1 METHODS
+
+=head2 Constructors
+
+=head3 new
+
+Create a  Coptic or Ethiopic  date by giving  the year, month  and day
+numbers.
+
+=head3 new-from-date
+
+Build a  Coptic or  Ethiopic date  by cloning  an object  from another
+class.  This  other  class  can  be the  core  class  C<Date>  or  any
+C<Date::Calendar::>R<xxx> class with a C<daycount> method.
+
+=head3 new-from-daycount
+
+Build a Coptic or Ethiopic date from the Modified Julian Day number.
+
+=head2 Accessors
+
+=head3 year, month, day
+
+The numbers defining the date.
+
+=head3 month-name
+
+The month of the date, as a string.
+
+=head3 day-name
+
+The name of the day within  the week, as a string.
+
+=head3 day-of-week
+
+The number  of the  day within  the week  (1 for  sunday /  Tkyriakē /
+Segno, 7 for saturday / Psabbaton / Ehud).
+
+=head1 ISSUES, BUGS, ETC
+
+I am  no expert in  the Sahidic (Coptic)  language and in  the Amharic
+(Ethiopic) language. I  have copied / pasted names  from free sources,
+but I am  in no position to recognize which  sources are authoritative
+or  not. Also,  I  have  kept the  Latin  script  (although with  some
+diacritics) and not the Coptic script.
+
+In the Coptic and Ethiopic calendars, days span from sunset to sunset.
+Therefore, when  converting with a midnight-to-midnight  calendar, the
+converion is valid only before sunset.
+
+=head1 SEE ALSO
+
+=head2 Internet
+
+L<https://en.wikipedia.org/wiki/Coptic_calendar>
+
+L<https://en.wikipedia.org/wiki/Ethiopian_calendar>
+
+L<https://www.funaba.org/cc>
+
+L<https://www.tondering.dk/claus/calendar.html> - Claus Tøndering's
+calendar FAQ
+
+=head2 Perl 6 Software
+
+L<Date::Calendar::Strftime>
+or L<https://github.com/jforget/p6-Date-Calendar-Strftime>
+
+L<Date::Calendar::Hebrew>
+or L<https://github.com/jforget/p6-Date-Calendar-Hebrew>
+
+L<Date::Calendar::FrenchRevolutionary>
+or L<https://github.com/jforget/Date-Calendar-FrenchRevolutionary>
+
+=head2 Perl 5 Software
+
+L<DateTime>
+
+L<Date::Converter>
+
+=head2 Other Software
+
+date(1), strftime(3)
+
+F<calendar/cal-coptic.el>  in Emacs.
+
+CALENDRICA 4.0 -- Common Lisp, which can be download in the "Resources" section of
+L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-general-interest/calendrical-calculations-ultimate-edition-4th-edition?format=PB&isbn=9781107683167>
+
+=head2 Books
+
+Calendrical Calculations (Third Edition) by Nachum Dershowitz and
+Edward M. Reingold, Cambridge University Press, see
+L<http://www.calendarists.com>
+or L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-general-interest/calendrical-calculations-ultimate-edition-4th-edition?format=PB&isbn=9781107683167>.
+(Actually, I have used the 3.0 version which is not longer available)
+
+I<La saga des calendriers>, p 70-71, by Jean Lefort, published by I<Belin> (I<Pour la Science>), ISBN 2-90929-003-5
+See L<https://www.belin-editeur.com/la-saga-des-calendriers>
 
 =head1 AUTHOR
 
