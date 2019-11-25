@@ -109,7 +109,7 @@ $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
 #--> Peftoou 1 Mesori 1735
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
-#--> Rob 1 Nahas 2011
+#--> Rob 1 Nähase 2011
 
 =end code
 
@@ -131,7 +131,7 @@ $TPC-Pittsburgh-grg1 = $TPC-Pittsburgh-cop.to-date;
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg2 = $TPC-Pittsburgh-eth.to-date;
-#--> 14 Sane 2011 = 21 June 2019
+#--> 14 Säne 2011 = 21 June 2019
 
 =end code
 
@@ -146,7 +146,6 @@ years occurs every fourth year,  with no adjustment for century years.
 The calendars  also define weeks which  last for 7 days,  beginning on
 sunday and ending on saturday.
 
-See the full documentation in each class.
 
 =head1 AUTHOR
 

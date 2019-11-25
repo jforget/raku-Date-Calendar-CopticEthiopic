@@ -55,7 +55,7 @@ $Perlcon-Riga-grg .= new(2019, 8, 7);
 $Perlcon-Riga-cop .= new-from-date($Perlcon-Riga-grg);
 
 say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
-#--> Peftoou 1 Misra 1735
+#--> Peftoou 1 Mesori 1735
 
 =end code
 
@@ -70,7 +70,7 @@ my Date                     $TPC-Pittsburgh-grg;
 
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-cop.to-date;
-#--> 9 Bauna 1735 = 16 June 2019
+#--> 9 Paoni 1735 = 16 June 2019
 
 =end code
 
@@ -83,6 +83,8 @@ consists of 12 months  with 30 days each, plus 5  or 6 additional days
 year, with no  adjustment for century years. The  calendar also define
 weeks  which last  for  7  days, beginning  on  sunday  and ending  on
 saturday.
+
+See the full documentation in the C<Date::Calendar::CopticEthiopic> role.
 
 =head1 AUTHOR
 

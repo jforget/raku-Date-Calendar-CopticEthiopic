@@ -18,6 +18,22 @@ method mjd-bias {
   -676146;
 }
 
+method month-name {
+  Date::Calendar::Ethiopic::Names::month-name($.month);
+}
+
+method month-abbr {
+  Date::Calendar::Ethiopic::Names::month-abbr($.month);
+}
+
+method day-name {
+  Date::Calendar::Ethiopic::Names::day-name(($.daycount + 4) % 7);
+}
+
+method day-abbr {
+  Date::Calendar::Ethiopic::Names::day-abbr(($.daycount + 4) % 7);
+}
+
 =begin pod
 
 =head1 NAME
@@ -39,7 +55,7 @@ $Perlcon-Riga-grg .= new(2019, 8, 7);
 $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
-#--> Rob 1 Nahas 2011
+#--> Rob 1 Nähase 2011
 
 =end code
 
@@ -54,7 +70,7 @@ my Date                     $TPC-Pittsburgh-grg;
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-eth.to-date;
-#--> 14 Sane 2011 = 21 June 2019
+#--> 14 Säne 2011 = 21 June 2019
 
 =end code
 
@@ -67,6 +83,8 @@ days  (epagomene) at  the end  of the  year. Leap  years occurs  every
 fourth year, with  no adjustment for century years.  The calendar also
 defines weeks which last for 7 days, beginning on sunday and ending on
 saturday.
+
+See the full documentation in the C<Date::Calendar::CopticEthiopic> role.
 
 =head1 AUTHOR
 

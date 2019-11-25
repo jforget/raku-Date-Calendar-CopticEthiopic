@@ -7,8 +7,7 @@ use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
 plan  3  # objects
-   ×  6  # accessors
-+ 8; # Eth names not ready
+   × 10; # accessors
 
 my Date::Calendar::Coptic $dc .= new(year => 1736, month => 3, day => 10);
 
@@ -44,8 +43,10 @@ is($de.year       ,  2012);
 is($de.day-of-year,    70);
 is($de.daycount   , 58807);
 is($de.gist       , "2012-03-10");
-#is($de.month-name, '???');
-#is($de.day-name,   '???');
+is($de.month-name , 'Ḫədar');
+is($de.month-abbr , 'Hed');
+is($de.day-name   , 'Hamus');
+is($de.day-abbr   , 'Ham');
 
 
 done-testing;

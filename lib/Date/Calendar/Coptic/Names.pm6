@@ -1,12 +1,12 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
 
-unit class Date::Calendar::Coptic::Names:ver<0.0.1>;
+unit module Date::Calendar::Coptic::Names:ver<0.0.1>;
 
-my @month-names = Q :ww / Thout    Paopi    Hathor  
+my @month-names = Q :ww / Thout    Paopi    Hathor
                           Koiak    Tobi     Meshir
-                          Paremhat Parmouti Pashons 
-                          Paoni    Epip     Mesori  
+                          Paremhat Parmouti Pashons
+                          Paoni    Epip     Mesori
                          'Pi Kogi Enavot'
                          /;
 
