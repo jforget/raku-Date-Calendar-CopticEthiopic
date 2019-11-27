@@ -27,11 +27,11 @@ method month-abbr {
 }
 
 method day-name {
-  Date::Calendar::Ethiopic::Names::day-name(($.daycount + 4) % 7);
+  Date::Calendar::Ethiopic::Names::day-name($.day-of-week);
 }
 
 method day-abbr {
-  Date::Calendar::Ethiopic::Names::day-abbr(($.daycount + 4) % 7);
+  Date::Calendar::Ethiopic::Names::day-abbr($.day-of-week);
 }
 
 =begin pod

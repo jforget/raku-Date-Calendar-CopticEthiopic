@@ -5,6 +5,9 @@ unit role Date::Calendar::CopticEthiopic:ver<0.0.1>;
 has Int $.year  where { $_ ≥ 1 };
 has Int $.month where { 1 ≤ $_ ≤ 13 };
 has Int $.day   where { 1 ≤ $_ ≤ 30 };
+has Int $.daycount;
+has Int $.day-of-year;
+has Int $.day-of-week;
 
 method _chek-build-args(Int $year, Int $month, Int $day) {
 
@@ -36,13 +39,18 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   $!year   = $year;
   $!month  = $month;
   $!day    = $day;
-}
 
-method daycount {
-    floor(365.25 × $.year)
-  + 30 × ($.month - 1)
-  + $.day
-  + $.mjd-bias
+  # computing derived attributes
+  my Int $doy      = 30 × ($month - 1) + $day;
+  my Int $daycount = (365.25 × $year).floor
+                     + $doy
+                     + $.mjd-bias;
+  my Int $dow      = ($daycount + 4) % 7;
+
+  # storing derived attributes
+  $!day-of-year = $doy;
+  $!day-of-week = $dow;
+  $!daycount    = $daycount;
 }
 
 method new-from-daycount(Int $count) {
@@ -73,10 +81,6 @@ method to-date($class = 'Date') {
 
 method gist {
   sprintf("%04d-%02d-%02d", $.year, $.month, $.day);
-}
-
-method day-of-year {
-  $.day + 30 × ($.month - 1);
 }
 
 sub is-leap(Int $year) {

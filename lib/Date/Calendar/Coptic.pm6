@@ -27,11 +27,11 @@ method month-abbr {
 }
 
 method day-name {
-  Date::Calendar::Coptic::Names::day-name(($.daycount + 4) % 7);
+  Date::Calendar::Coptic::Names::day-name($.day-of-week);
 }
 
 method day-abbr {
-  Date::Calendar::Coptic::Names::day-abbr(($.daycount + 4) % 7);
+  Date::Calendar::Coptic::Names::day-abbr($.day-of-week);
 }
 
 =begin pod
