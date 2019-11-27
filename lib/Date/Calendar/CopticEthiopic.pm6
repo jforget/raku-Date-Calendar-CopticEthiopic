@@ -8,6 +8,8 @@ has Int $.day   where { 1 ≤ $_ ≤ 30 };
 has Int $.daycount;
 has Int $.day-of-year;
 has Int $.day-of-week;
+has Int $.week-number;
+has Int $.week-year;
 
 method _chek-build-args(Int $year, Int $month, Int $day) {
 
@@ -41,16 +43,37 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   $!day    = $day;
 
   # computing derived attributes
-  my Int $doy      = 30 × ($month - 1) + $day;
-  my Int $daycount = (365.25 × $year).floor
-                     + $doy
-                     + $.mjd-bias;
-  my Int $dow      = ($daycount + 4) % 7;
+  my Int $doy       = 30 × ($month - 1) + $day;
+  my Int $daycount  = (365.25 × $year).floor
+                      + $doy
+                      + $.mjd-bias;
+  my Int $dow       = ($daycount + 4) % 7;
+  if $dow == 0 {
+    $dow = 7;
+  }
+  my Int $doy-pef   = $doy - $dow + 4; # day-of-year value for the nearest Peftoou / Hamus / Wednesday
+  my Int $week-year = $year;
+  if $doy-pef ≤ 0 {
+    -- $week-year;
+    $doy    += year-length($week-year);
+    $doy-pef = $doy - $dow + 4;
+  }
+  else {
+    my $year-length = year-length($week-year);
+    if $doy-pef > $year-length {
+      $doy    -= $year-length;
+      $doy-pef = $doy - $dow + 4;
+      ++ $week-year;
+    }
+  }
+  my Int $week-number = ($doy-pef / 7).ceiling;
 
   # storing derived attributes
   $!day-of-year = $doy;
   $!day-of-week = $dow;
   $!daycount    = $daycount;
+  $!week-number = $week-number;
+  $!week-year   = $week-year;
 }
 
 method new-from-daycount(Int $count) {
@@ -85,6 +108,15 @@ method gist {
 
 sub is-leap(Int $year) {
   $year % 4 == 3;
+}
+
+sub year-length(Int $year --> Int) {
+  if is-leap($year) {
+    return 366;
+  }
+  else {
+    return 365;
+  }
 }
 
 =begin pod
