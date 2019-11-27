@@ -111,12 +111,8 @@ sub is-leap(Int $year) {
 }
 
 sub year-length(Int $year --> Int) {
-  if is-leap($year) {
-    return 366;
-  }
-  else {
-    return 365;
-  }
+  if is-leap($year) { return 366; }
+  else              { return 365; }
 }
 
 =begin pod
@@ -211,14 +207,48 @@ The numbers defining the date.
 
 The month of the date, as a string.
 
+=head3 month-abbr
+
+The month of the date, as a 3-char string.
+
 =head3 day-name
 
 The name of the day within  the week, as a string.
+
+=head3 day-abbr
+
+The name of the day within  the week, as a 3-char string.
 
 =head3 day-of-week
 
 The number  of the  day within  the week  (1 for  sunday /  Tkyriakē /
 Segno, 7 for saturday / Psabbaton / Ehud).
+
+=head3 week-number
+
+The number of the  week within the year, 1 to 53.  Similar to the "ISO
+date" as defined  for Gregorian date). See below for  a description of
+the week-related attributes.
+
+=head3 week-year
+
+Mostly similar  to the  C<year> attribute. Yet,  as described  for the
+so-called  "ISO-date"  for the  Gregorian  calendar  and as  explained
+below, the last days  of the year and the first  days of the following
+year can  be sort-of transferred  to the other year.  The C<week-year>
+attribute reflects this transfer.
+
+=head3 daycount
+
+The MJD value (Modified Julian Date) for the date.
+
+=head2 Week-Related Attributes
+
+To be written
+
+=head2 Other Methods
+
+To be written
 
 =head1 ISSUES, BUGS, ETC
 
@@ -231,6 +261,11 @@ diacritics) and not the Coptic script.
 In the Coptic and Ethiopic calendars, days span from sunset to sunset.
 Therefore, when  converting with a midnight-to-midnight  calendar, the
 converion is valid only before sunset.
+
+Ethiopic or  Ethiopian? Some English-speaking sources  (see below) use
+Ethiopic, the others use Ethiopian. Since the first source I have read
+is Reingold's and Dershowitz' book, I have used the same term as them,
+Ethiopic.
 
 =head1 SEE ALSO
 
@@ -273,11 +308,11 @@ L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-gene
 
 =head2 Books
 
-Calendrical Calculations (Third Edition) by Nachum Dershowitz and
+Calendrical Calculations (Fourth Edition) by Nachum Dershowitz and
 Edward M. Reingold, Cambridge University Press, see
 L<http://www.calendarists.com>
 or L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-general-interest/calendrical-calculations-ultimate-edition-4th-edition?format=PB&isbn=9781107683167>.
-(Actually, I have used the 3.0 version which is not longer available)
+(Actually, I have used the third edition which is not longer available, see pages 72 to 77)
 
 I<La saga des calendriers>, p 70-71, by Jean Lefort, published by I<Belin> (I<Pour la Science>), ISBN 2-90929-003-5
 See L<https://www.belin-editeur.com/la-saga-des-calendriers>
