@@ -44,13 +44,8 @@ method _build-from-args(Int $year, Int $month, Int $day) {
 
   # computing derived attributes
   my Int $doy       = 30 × ($month - 1) + $day;
-  my Int $daycount  = (365.25 × $year).floor
-                      + $doy
-                      + $.mjd-bias;
-  my Int $dow       = ($daycount + 4) % 7;
-  if $dow == 0 {
-    $dow = 7;
-  }
+  my Int $daycount  = (365.25 × $year).floor + $doy + $.mjd-bias;
+  my Int $dow       = ($daycount + 3) % 7 + 1;
   my Int $doy-pef   = $doy - $dow + 4; # day-of-year value for the nearest Peftoou / Hamus / Wednesday
   my Int $week-year = $year;
   if $doy-pef ≤ 0 {
@@ -141,7 +136,7 @@ $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
 #--> Peftoou 1 Mesori 1735
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
-#--> Rob 1 Nähase 2011
+#--> Hamus 1 Nähase 2011
 
 =end code
 
