@@ -221,29 +221,202 @@ Segno, 7 for saturday / Psabbaton / Ehud).
 
 =head3 week-number
 
-The number of the  week within the year, 1 to 53.  Similar to the "ISO
-date" as defined  for Gregorian date). See below for  a description of
-the week-related attributes.
+The number of  the week within the year,  1 to 52 (or even  53 on some
+years). Similar to the "ISO date"  as defined for Gregorian date. Week
+number  1 is  the Sun→Sat  span that  contains the  first Wednesday  /
+Peftoou / Hamus of the year. This  first week may start as soon as the
+3rd  epagomene day  (or 4th  on leap  year) or  as late  as 4  Thout /
+Mäskäräm. Likewise, the last  week of the year may end  as soon as the
+2nd epagomene  day or  it may  last until 3rd  Thout of  the following
+year.
 
 =head3 week-year
 
 Mostly similar  to the  C<year> attribute. Yet,  as described  for the
 so-called  "ISO-date"  for the  Gregorian  calendar  and as  explained
-below, the last days  of the year and the first  days of the following
+above, the last days  of the year and the first  days of the following
 year can  be sort-of transferred  to the other year.  The C<week-year>
-attribute reflects this transfer.
+attribute reflects this transfer. While the real year always begins on
+1st Thout / Mäskäräm and ends on  the 5th (6th if leap) epagomene day,
+the C<week-year>  always begins on  Sunday /  Tkyriakē / Segno  and it
+always ends 364 or 371 days later on Saturday / Psabbaton / Ehud.
 
 =head3 daycount
 
 The MJD value (Modified Julian Date) for the date.
 
-=head2 Week-Related Attributes
-
-To be written
-
 =head2 Other Methods
 
-To be written
+=head3 gist
+
+Gives a short string representing the date, in C<YYYY-MM-DD> format.
+
+=head3 to-date
+
+Clones  the   date  into   a  core  class   C<Date>  object   or  some
+C<Date::Calendar::>I<xxx> compatible calendar  class. The target class
+name is given  as a positional parameter. This  parameter is optional,
+the default value is C<"Date"> for the Gregorian calendar.
+
+To convert a date from a  calendar to another, you have two conversion
+styles,  a "push"  conversion and  a "pull"  conversion. For  example,
+while converting from the Coptic date "10 Thout 1736" to Ethiopic, you
+can code:
+
+=begin code :lang<perl6>
+
+use Date::Calendar::Coptic;
+use Date::Calendar::Ethiopic;
+
+my  Date::Calendar::Coptic   $d-orig;
+my  Date::Calendar::Ethiopic $d-dest-push;
+my  Date::Calendar::Ethiopic $d-dest-pull;
+
+$d-orig .= new(year  => 1736
+             , month =>    1
+             , day   =>   10);
+$d-dest-push  = $d-orig.to-date("Date::Calendar::Ethiopic");
+$d-dest-pull .= new-from-date($d-orig);
+
+=end code
+
+And C<$d-dest-push> and C<$d-dest-pull> result in the same date.
+
+When converting I<from> Gregorian, use the pull style. When converting
+I<to> Gregorian, use the push style. When converting from any calendar
+other than Gregorian  to any other calendar other  than Gregorian, use
+the style you prefer.
+
+=head3 strftime
+
+This method is  very similar to the homonymous functions  you can find
+in several  languages (C, shell, etc).  It also takes some  ideas from
+C<printf>-similar functions. For example
+
+=begin code :lang<perl6>
+
+$df.strftime("%04d blah blah blah %-25B")
+
+=end code
+
+will give  the day number  padded on  the left with  2 or 3  zeroes to
+produce a 4-digit substring, plus the substring C<" blah blah blah ">,
+plus the month name, padded on the right with enough spaces to produce
+a 25-char substring.  Thus, the whole string will be at least 42 chars
+long. By  the way, you  can drop the  "at least" mention,  because the
+longest month name  is 15-char long, so the padding  will always occur
+and will always include at least 10 spaces.
+
+A C<strftime> specifier consists of:
+
+=item A percent sign,
+
+=item An  optional minus sign, to  indicate on which side  the padding
+occurs. If the minus sign is present, the value is aligned to the left
+and the padding spaces are added to the right. If it is not there, the
+value is aligned to the right and the padding chars (spaces or zeroes)
+are added to the left.
+
+=item  An  optional  zero  digit,  to  choose  the  padding  char  for
+right-aligned values.  If the  zero char is  present, padding  is done
+with zeroes. Else, it is done wih spaces.
+
+=item An  optional length, which  specifies the minimum length  of the
+result substring.
+
+=item  An optional  C<"E">  or  C<"O"> modifier.  On  some older  UNIX
+system,  these  were used  to  give  the I<extended>  or  I<localized>
+version  of  the date  attribute.  Here,  they rather  give  alternate
+variants of the date attribute.
+
+=item A mandatory type code.
+
+The allowed type codes are:
+
+=defn C<%a>
+
+The abbreviated day of week name.
+
+=defn C<%A>
+
+The full day of week name.
+
+=defn C<%b>
+
+The abbreviated month name.
+
+=defn C<%B>
+
+The full month name.
+
+=defn C<%c>
+
+The date-time, using the default format, as defined by the current locale.
+
+=defn C<%d>
+
+The day of the month as a decimal number (range 01 to 30).
+
+=defn C<%e>
+
+Like C<%d>, the  day of the month  as a decimal number,  but a leading
+zero is replaced by a space.
+
+=defn C<%f>
+
+The month as a decimal number (1  to 13). Unlike C<%m>, a leading zero
+is replaced by a space.
+
+=defn C<%F>
+
+Equivalent to %Y-%m-%d (the ISO 8601 date format)
+
+=defn C<%G>
+
+The  "week year"  as a  decimal number.  Mostly similar  to C<%L>  and
+C<%Y>, but it may differ on the very  first days of the year or on the
+very last  days. Analogous to  the year  number in the  so-called "ISO
+date" format for Gregorian dates.
+
+=defn C<%j>
+
+The day of the year as a decimal number (range 001 to 366).
+
+=defn C<%L>
+
+The year  as a decimal  number. Strictly  similar to C<%Y>  and mostly
+similar to C<%G>.
+
+=defn C<%m>
+
+The month as a two-digit decimal  number (range 01 to 13), including a
+leading zero if necessary.
+
+=defn C<%n>
+
+A newline character.
+
+=defn C<%t>
+
+A tab character.
+
+=defn C<%Y>
+
+The year  as a decimal  number. Strictly  similar to C<%L>  and mostly
+similar to C<%G>.
+
+=defn C<%u>
+
+The day of week as a 1..7 number.
+
+=defn C<%V>
+
+The week number as defined above, similar to the week number in the
+so-called "ISO date" format for Gregorian dates.
+
+=defn C<%%>
+
+A literal `%' character.
 
 =head1 ISSUES, BUGS, ETC
 
@@ -275,7 +448,7 @@ L<https://www.funaba.org/cc>
 L<https://www.tondering.dk/claus/calendar.html> - Claus Tøndering's
 calendar FAQ
 
-=head2 Perl 6 Software
+=head2 Raku Software
 
 L<Date::Calendar::Strftime>
 or L<https://github.com/jforget/p6-Date-Calendar-Strftime>
