@@ -400,11 +400,6 @@ A newline character.
 
 A tab character.
 
-=defn C<%Y>
-
-The year  as a decimal  number. Strictly  similar to C<%L>  and mostly
-similar to C<%G>.
-
 =defn C<%u>
 
 The day of week as a 1..7 number.
@@ -413,6 +408,11 @@ The day of week as a 1..7 number.
 
 The week number as defined above, similar to the week number in the
 so-called "ISO date" format for Gregorian dates.
+
+=defn C<%Y>
+
+The year  as a decimal  number. Strictly  similar to C<%L>  and mostly
+similar to C<%G>.
 
 =defn C<%%>
 
