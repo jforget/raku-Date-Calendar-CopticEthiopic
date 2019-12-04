@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
 
-unit module Date::Calendar::Ethiopic::Names:ver<0.0.1>;
+unit module Date::Calendar::Ethiopic::Names:ver<0.0.2>:auth<cpan:JFORGET>;
 
 my @month-names = < Mäskäräm Ṭəqəmt  Ḫədar
                     Taḫśaś   Ṭərr    Yäkatit

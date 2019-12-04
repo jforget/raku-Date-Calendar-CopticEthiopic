@@ -8,9 +8,9 @@
       "Date::Calendar::Strftime"
   ],
   "description" : "conversions from / to the Coptic calendar and from / to the Ethiopic calendar",
-  "license" : "Artistic-2.0",
-  "name" : "Date::Calendar::CopticEthiopic",
-  "perl" : "6.c",
+  "license"     : "Artistic-2.0",
+  "name"        : "Date::Calendar::CopticEthiopic",
+  "perl"        : "6.c",
   "provides" : {
       "Date::Calendar::Coptic"          : "lib/Date/Calendar/Coptic.pm6"
     , "Date::Calendar::Ethiopic"        : "lib/Date/Calendar/Ethiopic.pm6"
@@ -30,5 +30,5 @@
   "test-depends" : [ 
       "Test::META"
   ],
-  "version" : "0.0.1"
+  "version" : "0.0.2"
 }

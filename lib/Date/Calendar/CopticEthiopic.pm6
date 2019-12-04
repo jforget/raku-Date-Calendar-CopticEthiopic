@@ -1,6 +1,6 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
-unit role Date::Calendar::CopticEthiopic:ver<0.0.1>;
+unit role Date::Calendar::CopticEthiopic:ver<0.0.2>:auth<cpan:JFORGET>;
 
 has Int $.year  where { $_ ≥ 1 };
 has Int $.month where { 1 ≤ $_ ≤ 13 };

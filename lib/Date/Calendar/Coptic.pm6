@@ -5,7 +5,7 @@ use Date::Calendar::Strftime;
 use Date::Calendar::CopticEthiopic;
 use Date::Calendar::Coptic::Names;
 
-unit class Date::Calendar::Coptic:ver<0.0.1>
+unit class Date::Calendar::Coptic:ver<0.0.2>:auth<cpan:JFORGET>
       does Date::Calendar::CopticEthiopic
       does Date::Calendar::Strftime;
 
