@@ -451,7 +451,7 @@ calendar FAQ
 =head2 Raku Software
 
 L<Date::Calendar::Strftime>
-or L<https://github.com/jforget/p6-Date-Calendar-Strftime>
+or L<https://github.com/jforget/raku-Date-Calendar-Strftime>
 
 L<Date::Calendar::Hebrew>
 or L<https://github.com/jforget/p6-Date-Calendar-Hebrew>
