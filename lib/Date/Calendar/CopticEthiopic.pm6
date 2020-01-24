@@ -454,7 +454,7 @@ L<Date::Calendar::Strftime>
 or L<https://github.com/jforget/raku-Date-Calendar-Strftime>
 
 L<Date::Calendar::Hebrew>
-or L<https://github.com/jforget/p6-Date-Calendar-Hebrew>
+or L<https://github.com/jforget/raku-Date-Calendar-Hebrew>
 
 L<Date::Calendar::FrenchRevolutionary>
 or L<https://github.com/jforget/Date-Calendar-FrenchRevolutionary>
@@ -491,7 +491,7 @@ Jean Forget <JFORGET@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019 Jean Forget
+Copyright © 2019, 2020 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.
