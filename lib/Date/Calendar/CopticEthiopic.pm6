@@ -46,6 +46,13 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   my Int $doy       = 30 × ($month - 1) + $day;
   my Int $daycount  = (365.25 × $year).floor + $doy + $.mjd-bias;
   my Int $dow       = ($daycount + 3) % 7 + 1;
+
+  # storing derived attributes
+  $!day-of-year = $doy;
+  $!day-of-week = $dow;
+  $!daycount    = $daycount;
+
+  # computing week-related derived attributes
   my Int $doy-pef   = $doy - $dow + 4; # day-of-year value for the nearest Peftoou / Hamus / Wednesday
   my Int $week-year = $year;
   if $doy-pef ≤ 0 {
@@ -63,10 +70,7 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   }
   my Int $week-number = ($doy-pef / 7).ceiling;
 
-  # storing derived attributes
-  $!day-of-year = $doy;
-  $!day-of-week = $dow;
-  $!daycount    = $daycount;
+  # storing week-related derived attributes
   $!week-number = $week-number;
   $!week-year   = $week-year;
 }
