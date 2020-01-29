@@ -241,6 +241,11 @@ attribute reflects this transfer. While the real year always begins on
 the C<week-year>  always begins on  Sunday /  Tkyriakē / Segno  and it
 always ends 364 or 371 days later on Saturday / Psabbaton / Ehud.
 
+=head3 day-of-year
+
+How many  days since  the beginning of  the year. 1  to 365  on normal
+years, 1 to 366 on leap years.
+
 =head3 daycount
 
 The MJD value (Modified Julian Date) for the date.
@@ -457,7 +462,10 @@ L<Date::Calendar::Hebrew>
 or L<https://github.com/jforget/raku-Date-Calendar-Hebrew>
 
 L<Date::Calendar::FrenchRevolutionary>
-or L<https://github.com/jforget/Date-Calendar-FrenchRevolutionary>
+or L<https://github.com/jforget/raku-Date-Calendar-FrenchRevolutionary>
+
+Maybe someday, L<Date::Calendar::Julian>
+or L<https://github.com/jforget/raku-Date-Calendar-Julian>
 
 =head2 Perl 5 Software
 
