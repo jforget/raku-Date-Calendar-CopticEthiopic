@@ -1,5 +1,8 @@
 Revision history for Date-Calendar-CopticEthiopic
 
+0.0.3, released on...
+    - ...
+
 0.0.2, released on palindrome day Sunday 2020-02-02, or Tkyriakē 24 Tobi 1736 or Segno 24 Ṭərr 2012
     - Fixing a bug when computing the 'day-of-year' attribute
     - Better code coverage in the test files

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
 
-unit module Date::Calendar::Coptic::Names:ver<0.0.2>:auth<cpan:JFORGET>;
+unit module Date::Calendar::Coptic::Names:ver<0.0.3>:auth<cpan:JFORGET>;
 
 my @month-names = Q :ww / Thout    Paopi    Hathor
                           Koiak    Tobi     Meshir
