@@ -1,4 +1,4 @@
-# 
+#
 # Checking the week-based representations of Coptif and Ethiopic dates
 #
 use v6.c;
@@ -6,7 +6,7 @@ use Test;
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
-my @tests-cop = ( 
+my @tests-cop = (
                   ( 1733, 13,  4, 364, '1733-W52-7'), # Sat 2017-09-09, Psabbaton 4 Pi Kogi Enavot
                   ( 1733, 13,  5, 365, '1734-W01-1'), # Sun 2017-09-10, Thyriake 5 Pi Kogi Enavot
                   ( 1734,  1,  1,   1, '1734-W01-2'), # Mon 2017-09-11, Pesnau 1 Thout
@@ -22,7 +22,7 @@ my @tests-cop = (
                   ( 1737,  1,  2,   2, '1736-W52-7'), # Sat 2020-09-11, Psabbaton 2 Thout
              );
 
-my @tests-eth = ( 
+my @tests-eth = (
                   ( 2009, 13,  4, 364, '2009-W52-7'), # Sat 2017-09-09, Ehud 4 Pagume
                   ( 2009, 13,  5, 365, '2010-W01-1'), # Sun 2017-09-10, Segno 5 Pagume
                   ( 2010,  1,  1,   1, '2010-W01-2'), # Mon 2017-09-11, Maksegno 1 Mäskäräm

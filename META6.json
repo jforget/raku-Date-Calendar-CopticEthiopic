@@ -27,7 +27,7 @@
       "date"
     , "calendar"
   ],
-  "test-depends" : [ 
+  "test-depends" : [
       "Test::META"
   ],
   "version" : "0.0.3"

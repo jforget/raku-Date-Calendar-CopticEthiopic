@@ -1,4 +1,4 @@
-# 
+#
 # Checking the conversion between Gregorian on onehand and Coptic and Ethiopic on the other hand
 #
 use v6.c;
