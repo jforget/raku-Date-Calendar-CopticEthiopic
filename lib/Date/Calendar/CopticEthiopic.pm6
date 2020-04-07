@@ -291,10 +291,16 @@ $d-dest-pull .= new-from-date($d-orig);
 
 And C<$d-dest-push> and C<$d-dest-pull> result in the same date.
 
-When converting I<from> Gregorian, use the pull style. When converting
-I<to> Gregorian, use the push style. When converting from any calendar
-other than Gregorian  to any other calendar other  than Gregorian, use
-the style you prefer.
+When converting  I<from> the core  class C<Date>, use the  pull style.
+When converting I<to> the core class C<Date>, use the push style. When
+converting from  any class other  than the  core class C<Date>  to any
+other  class other  than the  core class  C<Date>, use  the style  you
+prefer.
+
+Please note  that the  class C<Date::Calendar::Gregorian> can  be used
+instead of  the core class  C<Date> to implement Gregorian  dates. And
+with this class, you can use both  the push and the pull methods, just
+like the other C<Date::Calendar::>R<xxx> classes.
 
 =head3 strftime
 
