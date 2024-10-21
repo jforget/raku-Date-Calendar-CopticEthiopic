@@ -1,7 +1,7 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
 
-unit module Date::Calendar::Ethiopic::Names:ver<0.0.3>:auth<cpan:JFORGET>;
+unit module Date::Calendar::Ethiopic::Names:ver<0.0.3>:auth<zef:jforget>:api<0>;
 
 my @month-names = < Mäskäräm Ṭəqəmt  Ḫədar
                     Taḫśaś   Ṭərr    Yäkatit
@@ -51,11 +51,11 @@ L<https://api.kde.org/4.x-api/kdelibs-apidocs/kdecore/html/kcalendarsystemethiop
 
 =head1 AUTHOR
 
-Jean Forget <JFORGET@cpan.org>
+Jean Forget <J2N-FORGET at orange dot fr>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019, 2020 Jean Forget
+Copyright © 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.

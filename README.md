@@ -76,12 +76,12 @@ sunday and ending on saturday.
 AUTHOR
 ======
 
-Jean Forget <JFORGET@cpan.org>
+Jean Forget <J2N-FORGET at orange dot fr>
 
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright © 2019, 2020 Jean Forget
+Copyright © 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.

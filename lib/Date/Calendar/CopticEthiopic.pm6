@@ -1,6 +1,6 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.c;
-unit role Date::Calendar::CopticEthiopic:ver<0.0.3>:auth<cpan:JFORGET>;
+unit role Date::Calendar::CopticEthiopic:ver<0.0.3>:auth<zef:jforget>:api<0>;
 
 has Int $.year  where { $_ ≥ 1 };
 has Int $.month where { 1 ≤ $_ ≤ 13 };
@@ -402,6 +402,9 @@ The day of the year as a decimal number (range 001 to 366).
 The year  as a decimal  number. Strictly  similar to C<%Y>  and mostly
 similar to C<%G>.
 
+Since  2024 and  the release  of C<Date::Calendar::Strfrtime>  version
+C<0.0.4>, this strftime specifier is deprecated.
+
 =defn C<%m>
 
 The month as a two-digit decimal  number (range 01 to 13), including a
@@ -505,11 +508,11 @@ See L<https://www.belin-editeur.com/la-saga-des-calendriers>
 
 =head1 AUTHOR
 
-Jean Forget <JFORGET@cpan.org>
+Jean Forget <J2N-FORGET at orange dot fr>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019, 2020 Jean Forget
+Copyright © 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.

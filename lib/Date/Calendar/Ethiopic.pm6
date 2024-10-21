@@ -5,7 +5,7 @@ use Date::Calendar::Strftime;
 use Date::Calendar::CopticEthiopic;
 use Date::Calendar::Ethiopic::Names;
 
-unit class Date::Calendar::Ethiopic:ver<0.0.3>:auth<cpan:JFORGET>
+unit class Date::Calendar::Ethiopic:ver<0.0.3>:auth<zef:jforget>:api<0>
       does Date::Calendar::CopticEthiopic
       does Date::Calendar::Strftime;
 
@@ -88,11 +88,11 @@ See the full documentation in the C<Date::Calendar::CopticEthiopic> role.
 
 =head1 AUTHOR
 
-Jean Forget <JFORGET@cpan.org>
+Jean Forget <J2N-FORGET at orange dot fr>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019, 2020 Jean Forget
+Copyright © 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.
