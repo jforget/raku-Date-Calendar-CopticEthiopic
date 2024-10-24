@@ -471,14 +471,29 @@ calendar FAQ
 L<Date::Calendar::Strftime>
 or L<https://github.com/jforget/raku-Date-Calendar-Strftime>
 
+L<Date::Calendar::Gregorian>
+or L<https://github.com/jforget/raku-Date-Calendar-Gregorian>
+
 L<Date::Calendar::Hebrew>
 or L<https://github.com/jforget/raku-Date-Calendar-Hebrew>
 
 L<Date::Calendar::FrenchRevolutionary>
 or L<https://github.com/jforget/raku-Date-Calendar-FrenchRevolutionary>
 
-Maybe someday, L<Date::Calendar::Julian>
+L<Date::Calendar::Julian>
 or L<https://github.com/jforget/raku-Date-Calendar-Julian>
+
+L<Date::Calendar::Hijri>
+or L<https://github.com/jforget/raku-Date-Calendar-Hijri>
+
+L<Date::Calendar::MayaAztec>
+or L<https://github.com/jforget/raku-Date-Calendar-MayaAztec>
+
+L<Date::Calendar::Persian>
+or L<https://github.com/jforget/raku-Date-Calendar-Persian>
+
+L<Date::Calendar::Bahai>
+or L<https://github.com/jforget/raku-Date-Calendar-Bahai>
 
 =head2 Perl 5 Software
 
