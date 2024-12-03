@@ -1,0 +1,20 @@
+#!/bin/sh
+# -*- encoding: utf-8; indent-tabs-mode: nil -*-
+#
+# Generate the POD6 documentation for the classes Date::Calendar::Coptic and  Date::Calendar::Ethiopic
+#
+
+export DOC=$THIS_DIR/doc
+
+raku --doc=HTML lib/Date/Calendar/CopticEthiopic.rakumod  > $DOC/Coptic-Ethiopic.html
+raku --doc=HTML lib/Date/Calendar/Coptic.rakumod          > $DOC/Coptic.html
+raku --doc=HTML lib/Date/Calendar/Coptic/Names.rakumod    > $DOC/Coptic-Names.html
+raku --doc=HTML lib/Date/Calendar/Ethiopic.rakumod        > $DOC/Ethiopic.html
+raku --doc=HTML lib/Date/Calendar/Ethiopic/Names.rakumod  > $DOC/Ethiopic-Names.html
+
+case $1 in
+   --show)
+     cd $DOC
+     firefox Coptic-Ethiopic.html Coptic.html Coptic-Names.html Ethiopic.html Ethiopic-Names.html
+     ;;
+esac
