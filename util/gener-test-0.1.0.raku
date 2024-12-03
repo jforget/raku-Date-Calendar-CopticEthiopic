@@ -236,7 +236,7 @@ sub gener-new($dce0 is copy, $dce1 is copy, $midnight, $key, $year, $month, $day
   my Str $w1 = ''; if $s1.chars < $lg { $w1 = ' ' x ($lg - $s1.chars); }
   if $midnight {
     print qq:to<EOF>
-         , ($year, $month-x, $day-x, after-sunset,   '$key', "$s0 ☽"$w0, "$sf0 ☽", "Gregorian: $gr0")
+         , ($year, $month-x, $day-x, after-sunset,   '$key', "$s0 ☽"$w0, "$sf1 ☽", "Gregorian: $gr0")
          , ($year, $month-x, $day-x, before-sunrise, '$key', "$s1 ☾"$w1, "$sf1 ☾", "Gregorian: $gr1")
          , ($year, $month-x, $day-x, daylight,       '$key', "$s1 ☼"$w1, "$sf1 ☼", "Gregorian: $gr1")
     EOF
@@ -268,22 +268,26 @@ sub gener-old-maya1($dce0 is copy, $dce1 is copy, $dce2 is copy, $key, $year, $m
   $dce1 .= new(year => $year, month => $month, day => $day);
   $dce0 .= new-from-daycount($dce1.daycount - 1);
   $dce2 .= new-from-daycount($dce1.daycount + 1);
+  my Str $sf0 = $dce0.strftime('"%a %d %b %Y ☼"');
   my Str $sf1 = $dce1.strftime('"%a %d %b %Y ☼"');
   my     $d0  = $dce0.to-date(%class{$key});
   my     $d1  = $dce1.to-date(%class{$key});
   my     $d2  = $dce2.to-date(%class{$key});
-  my Str $s1  = $d1 .strftime('"%e %B %V %A"');
-  my Str $l0  = $d0 .strftime( '%e %B ') ~ $d1.strftime( '%V %A');
-  my Str $l2  = $d1 .strftime( '%e %B ') ~ $d2.strftime( '%V %A');
+  my Str $s0  = $d0  .strftime('"%e %B %V %A"');
+  my Str $s1  = $d1  .strftime('"%e %B %V %A"');
+  my Str $l0  = $d0  .strftime( '%e %B ') ~ $d1.strftime( '%V %A');
+  my Str $l2  = $d1  .strftime( '%e %B ') ~ $d2.strftime( '%V %A');
   my Str $gr1 = $dce1.to-date.gist;
   my Int $lg-s1 = 25;
   my Int $lg-sf = 19;
+  if $s0 .chars < $lg-s1 { $s0  ~= ' ' x ($lg-s1 - $s0 .chars); }
   if $s1 .chars < $lg-s1 { $s1  ~= ' ' x ($lg-s1 - $s1 .chars); }
+  if $sf0.chars < $lg-sf { $sf0 ~= ' ' x ($lg-sf - $sf0.chars); }
   if $sf1.chars < $lg-sf { $sf1 ~= ' ' x ($lg-sf - $sf1.chars); }
   my Str $day-x   = sprintf("%2d", $day);
   my Str $month-x = sprintf("%2d", $month);
   print qq:to<EOF>
-       , ($year, $month-x, $day-x, after-sunset,   '$key', $s1, $sf1, "$gr1 wrong intermediate date, should be $l0")
+       , ($year, $month-x, $day-x, after-sunset,   '$key', $s0, $sf0, "$gr1 shift to previous date")
        , ($year, $month-x, $day-x, before-sunrise, '$key', $s1, $sf1, "$gr1 wrong intermediate date, should be $l0")
        , ($year, $month-x, $day-x, daylight,       '$key', $s1, $sf1, "$gr1 no problem")
   EOF
@@ -360,7 +364,7 @@ civil Maya  and Aztec calendars)  and that  you will have  to mentally
 shift the results before the comparison.
 
 And after  the data are  checked, copy-paste  the lines into  the test
-scripts 
+scripts
 C<09-conv-coptic-old.rakutest>,
 C<10-conv-coptic-new.rakutest>,
 C<11-conv-ethiopic-old.rakutest>
@@ -378,7 +382,10 @@ Cut and past  the lines into the C<@data> variable  of the proper test
 file.  Then,  from  this  variable,  select  the  lines  dealing  with
 Gregorian dates,  cut-and-paste them into the  C<@data-greg> variable.
 At the  end of  each line  dealing with  a Gregorian  date, add  a 9th
-element, which is the Gregorian date in C<'YYYY-MM-DD'> format.
+element,  which  is  the  Gregorian date  in  C<'YYYY-MM-DD'>  format.
+Lastly, cut (and  do not paste) the lines for  the Coptic calendar and
+the Ethiopic  calendar (which  cannot be simultaneously  version 0.0.3
+and version 0.1.0).
 
 Remove the first comma in the C<@data-greg> and C<@data> variables.
 
