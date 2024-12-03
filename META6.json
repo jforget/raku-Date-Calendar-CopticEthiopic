@@ -1,5 +1,5 @@
 {
-  "api"     : "0",
+  "api"     : "1",
   "auth"    : "zef:jforget",
   "authors" : [
     "Jean Forget"
@@ -11,13 +11,13 @@
   "description" : "conversions from / to the Coptic calendar and from / to the Ethiopic calendar",
   "license"     : "Artistic-2.0",
   "name"        : "Date::Calendar::CopticEthiopic",
-  "perl"        : "6.c",
+  "perl"        : "6.d",
   "provides" : {
-      "Date::Calendar::Coptic"          : "lib/Date/Calendar/Coptic.pm6"
-    , "Date::Calendar::Ethiopic"        : "lib/Date/Calendar/Ethiopic.pm6"
-    , "Date::Calendar::CopticEthiopic"  : "lib/Date/Calendar/CopticEthiopic.pm6"
-    , "Date::Calendar::Coptic::Names"   : "lib/Date/Calendar/Coptic/Names.pm6"
-    , "Date::Calendar::Ethiopic::Names" : "lib/Date/Calendar/Ethiopic/Names.pm6"
+      "Date::Calendar::Coptic"          : "lib/Date/Calendar/Coptic.rakumod"
+    , "Date::Calendar::Ethiopic"        : "lib/Date/Calendar/Ethiopic.rakumod"
+    , "Date::Calendar::CopticEthiopic"  : "lib/Date/Calendar/CopticEthiopic.rakumod"
+    , "Date::Calendar::Coptic::Names"   : "lib/Date/Calendar/Coptic/Names.rakumod"
+    , "Date::Calendar::Ethiopic::Names" : "lib/Date/Calendar/Ethiopic/Names.rakumod"
   },
   "resources" : [ ],
   "source-url" : "https://github.com/jforget/raku-Date-Calendar-CopticEthiopic.git",
@@ -31,5 +31,5 @@
   "test-depends" : [
       "Test::META"
   ],
-  "version" : "0.0.3"
+  "version" : "0.1.0"
 }

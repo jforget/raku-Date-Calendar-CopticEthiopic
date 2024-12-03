@@ -1,7 +1,7 @@
 #
 # Checking the conversion between Gregorian on onehand and Coptic and Ethiopic on the other hand
 #
-use v6.c;
+use v6.d;
 use Test;
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;

@@ -1,11 +1,11 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
-use v6.c;
+use v6.d;
 
 use Date::Calendar::Strftime;
 use Date::Calendar::CopticEthiopic;
 use Date::Calendar::Ethiopic::Names;
 
-unit class Date::Calendar::Ethiopic:ver<0.0.3>:auth<zef:jforget>:api<0>
+unit class Date::Calendar::Ethiopic:ver<0.1.0>:auth<zef:jforget>:api<1>
       does Date::Calendar::CopticEthiopic
       does Date::Calendar::Strftime;
 
@@ -92,7 +92,7 @@ Jean Forget <J2N-FORGET at orange dot fr>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2019, 2020, 2024 Jean Forget
+Copyright (c) 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.

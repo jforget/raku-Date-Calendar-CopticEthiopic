@@ -1,5 +1,9 @@
 Revision history for Date-Calendar-CopticEthiopic
 
+0.1.0 released on...
+    - use file extensions '.rakumod' and '.rakutest' instead of '.pm6' and '.t'
+    - add a "daypart" method, so the "after sunset" dates will be properly converted from / to midnight-to-midnight calendars
+
 0.0.3, released on Thursday 2024-10-24, or Ptiou 14 Paopi 1741, or Arb 14 Ṭəqəmt 2017
     - add an "api" property to the classes
     - migration from CPAN6 to zef

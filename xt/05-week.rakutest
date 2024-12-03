@@ -1,7 +1,7 @@
 #
 # Checking the week-based representations of Coptif and Ethiopic dates
 #
-use v6.c;
+use v6.d;
 use Test;
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
