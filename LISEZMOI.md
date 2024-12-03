@@ -9,7 +9,7 @@ SYNOPSIS
 Conversion  d'une date  grégorienne  vers le  calendrier  copte et  le
 calendrier éthiopien
 
-```perl6
+```
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
@@ -30,7 +30,7 @@ say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 Conversion  d'une  date  copte  et  d'une  date  éthiopienne  vers  le
 calendrier grégorien
 
-```perl6
+```
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
@@ -83,7 +83,7 @@ Jean Forget <J2N-FORGET at orange dot fr>
 COPYRIGHT ET LICENCE
 ====================
 
-Copyright © 2019, 2020, 2024 Jean Forget, tous droits réservés.
+Copyright (c) 2019, 2020, 2024 Jean Forget, tous droits réservés.
 
 Ce code constitue du logiciel libre. Vous pouvez le redistribuer et le
 modifier  en accord  avec  la  « licence  artistique  2.0 »  (Artistic

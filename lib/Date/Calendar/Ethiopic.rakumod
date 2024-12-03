@@ -44,7 +44,7 @@ Date::Calendar::Ethiopic - conversions from / to the Ethiopic calendar
 
 Converting a Gregorian date to Ethiopic
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Ethiopic;
 
@@ -61,7 +61,7 @@ say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 
 Converting an Ethiopic date to Gregorian
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Ethiopic;
 
@@ -71,6 +71,31 @@ my Date                     $TPC-Pittsburgh-grg;
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-eth.to-date;
 #--> 14 Säne 2011 = 21 June 2019
+
+=end code
+
+Converting a date while caring about sunset:
+
+=begin code :lang<raku>
+
+use Date::Calendar::Strftime;
+use Date::Calendar::Ethiopic;
+
+my Date::Calendar::Ethiopic $dt-ethiopic;
+my Date                     $dt-greg;
+
+$dt-ethiopic .= new(year => 2017, month => 3, day => 5, daypart => after-sunset);
+$dt-greg      = $dt-ethiopic.to-date;
+say $dt-greg.gist;   # --> 2024-11-13
+
+# on the other hand
+$dt-ethiopic .= new(year => 2017, month => 3, day => 5, daypart => before-sunrise);
+$dt-greg      = $dt-ethiopic.to-date;
+say $dt-greg.gist;   # --> 2024-11-14
+
+$dt-ethiopic .= new(year => 2017, month => 3, day => 5, daypart => daylight);
+$dt-greg      = $dt-ethiopic.to-date;
+say $dt-greg.gist;   # --> 2024-11-14
 
 =end code
 

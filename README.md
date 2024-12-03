@@ -8,7 +8,7 @@ SYNOPSIS
 
 Converting a Gregorian date to both Coptic and Ethiopic
 
-```perl6
+```
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
@@ -28,7 +28,7 @@ say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 
 Converting a Coptic date and an Ethiopic date to Gregorian
 
-```perl6
+```
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
@@ -81,7 +81,7 @@ Jean Forget <J2N-FORGET at orange dot fr>
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright © 2019, 2020, 2024 Jean Forget
+Copyright (c) 2019, 2020, 2024 Jean Forget
 
 This library is  free software; you can redistribute  it and/or modify
 it under the Artistic License 2.0.

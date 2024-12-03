@@ -44,7 +44,7 @@ Date::Calendar::Coptic - conversions from / to the Coptic calendar
 
 Converting a Gregorian date to Coptic
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Coptic;
 
@@ -61,7 +61,7 @@ say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
 
 Converting a Coptic date to Gregorian
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Coptic;
 
@@ -71,6 +71,31 @@ my Date                     $TPC-Pittsburgh-grg;
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-cop.to-date;
 #--> 9 Paoni 1735 = 16 June 2019
+
+=end code
+
+Converting a date while caring about sunset:
+
+=begin code :lang<raku>
+
+use Date::Calendar::Strftime;
+use Date::Calendar::Coptic;
+
+my Date::Calendar::Coptic $dt-coptic;
+my Date                   $dt-greg;
+
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => after-sunset);
+$dt-greg    = $dt-coptic.to-date;
+say $dt-greg.gist;   # --> 2024-11-13
+
+# on the other hand
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => before-sunrise);
+$dt-greg    = $dt-coptic.to-date;
+say $dt-greg.gist;   # --> 2024-11-14
+
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => daylight);
+$dt-greg    = $dt-coptic.to-date;
+say $dt-greg.gist;   # --> 2024-11-14
 
 =end code
 

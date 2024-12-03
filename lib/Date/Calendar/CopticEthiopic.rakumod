@@ -134,7 +134,7 @@ Date::Calendar::CopticEthiopic - conversions from / to the Coptic calendar and f
 
 Converting a Gregorian date to both Coptic and Ethiopic
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
@@ -156,7 +156,7 @@ say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
 
 Converting a Coptic date and an Ethiopic date to Gregorian
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
@@ -194,23 +194,36 @@ sunday and ending on saturday.
 =head3 new
 
 Create a  Coptic or Ethiopic  date by giving  the year, month  and day
-numbers.
+numbers, plus optionally the  day part (C<before-sunrise>, C<daylight>
+or C<after-sunset>).
 
 =head3 new-from-date
 
 Build a  Coptic or  Ethiopic date  by cloning  an object  from another
 class.  This  other  class  can  be the  core  class  C<Date>  or  any
-C<Date::Calendar::>R<xxx> class with a C<daycount> method.
+C<Date::Calendar::>R<xxx>  class   with  a  C<daycount>   method  and,
+hopefully, a C<daypart> method.
 
 =head3 new-from-daycount
 
-Build a Coptic or Ethiopic date from the Modified Julian Day number.
+Build a  Coptic or Ethiopic date  from the Modified Julian  Day number
+and the C<daypart> value.
 
 =head2 Accessors
 
 =head3 year, month, day
 
 The numbers defining the date.
+
+=head3 daypart
+
+A  number indicating  which part  of the  day. This  number should  be
+filled   and   compared   with   the   following   subroutines,   with
+self-documenting names:
+
+=item before-sunrise
+=item daylight
+=item after-sunset
 
 =head3 month-name
 
@@ -282,7 +295,7 @@ styles,  a "push"  conversion and  a "pull"  conversion. For  example,
 while converting from the Coptic date "10 Thout 1736" to Ethiopic, you
 can code:
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
@@ -318,7 +331,7 @@ This method is  very similar to the homonymous functions  you can find
 in several  languages (C, shell, etc).  It also takes some  ideas from
 C<printf>-similar functions. For example
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 $df.strftime("%04d blah blah blah %-25B")
 
@@ -358,56 +371,56 @@ variants of the date attribute.
 
 The allowed type codes are:
 
-=defn C<%a>
+=defn %a
 
 The abbreviated day of week name.
 
-=defn C<%A>
+=defn %A
 
 The full day of week name.
 
-=defn C<%b>
+=defn %b
 
 The abbreviated month name.
 
-=defn C<%B>
+=defn %B
 
 The full month name.
 
-=defn C<%c>
+=defn %c
 
 The date-time, using the default format, as defined by the current locale.
 
-=defn C<%d>
+=defn %d
 
 The day of the month as a decimal number (range 01 to 30).
 
-=defn C<%e>
+=defn %e
 
 Like C<%d>, the  day of the month  as a decimal number,  but a leading
 zero is replaced by a space.
 
-=defn C<%f>
+=defn %f
 
 The month as a decimal number (1  to 13). Unlike C<%m>, a leading zero
 is replaced by a space.
 
-=defn C<%F>
+=defn %F
 
 Equivalent to %Y-%m-%d (the ISO 8601 date format)
 
-=defn C<%G>
+=defn %G
 
 The  "week year"  as a  decimal number.  Mostly similar  to C<%L>  and
 C<%Y>, but it may differ on the very  first days of the year or on the
 very last  days. Analogous to  the year  number in the  so-called "ISO
 date" format for Gregorian dates.
 
-=defn C<%j>
+=defn %j
 
 The day of the year as a decimal number (range 001 to 366).
 
-=defn C<%L>
+=defn %L
 
 The year  as a decimal  number. Strictly  similar to C<%Y>  and mostly
 similar to C<%G>.
@@ -415,34 +428,51 @@ similar to C<%G>.
 Since  2024 and  the release  of C<Date::Calendar::Strfrtime>  version
 C<0.0.4>, this strftime specifier is deprecated.
 
-=defn C<%m>
+=defn %m
 
 The month as a two-digit decimal  number (range 01 to 13), including a
 leading zero if necessary.
 
-=defn C<%n>
+=defn %n
 
 A newline character.
 
-=defn C<%t>
+=defn %Ep
+
+Gives a 1-char string representing the day part:
+
+=item C<☾> or C<U+263E> before sunrise,
+=item C<☼> or C<U+263C> during daylight,
+=item C<☽> or C<U+263D> after sunset.
+
+Rationale: in  C or in  other programming languages,  when C<strftime>
+deals with a date-time object, the day is split into two parts, before
+noon and  after noon. The  C<%p> specifier  reflects this by  giving a
+C<"AM"> or C<"PM"> string.
+
+The  3-part   splitting  in   the  C<Date::Calendar::>R<xxx>   may  be
+considered as  an alternate  splitting of  a day.  To reflect  this in
+C<strftime>, we use an alternate version of C<%p>, therefore C<%Ep>.
+
+=defn %t
 
 A tab character.
 
-=defn C<%u>
+=defn %u
 
 The day of week as a 1..7 number.
 
-=defn C<%V>
+=defn %V
 
 The week number as defined above, similar to the week number in the
 so-called "ISO date" format for Gregorian dates.
 
-=defn C<%Y>
+=defn %Y
 
 The year  as a decimal  number. Strictly  similar to C<%L>  and mostly
 similar to C<%G>.
 
-=defn C<%%>
+=defn %%
 
 A literal `%' character.
 
@@ -453,10 +483,6 @@ I am  no expert in  the Sahidic (Coptic)  language and in  the Amharic
 but I am  in no position to recognize which  sources are authoritative
 or  not. Also,  I  have  kept the  Latin  script  (although with  some
 diacritics) and not the Coptic script.
-
-In the Coptic and Ethiopic calendars, days span from sunset to sunset.
-Therefore, when  converting with a midnight-to-midnight  calendar, the
-converion is valid only before sunset.
 
 Ethiopic or  Ethiopian? Some English-speaking sources  (see below) use
 Ethiopic, the others use Ethiopian. Since the first source I have read
@@ -478,44 +504,44 @@ calendar FAQ
 
 =head2 Raku Software
 
-L<Date::Calendar::Strftime>
+L<Date::Calendar::Strftime|https://raku.land/zef:jforget/Date::Calendar::Strftime>
 or L<https://github.com/jforget/raku-Date-Calendar-Strftime>
 
-L<Date::Calendar::Gregorian>
+L<Date::Calendar::Gregorian|https://raku.land/zef:jforget/Date::Calendar::Gregorian>
 or L<https://github.com/jforget/raku-Date-Calendar-Gregorian>
 
-L<Date::Calendar::Hebrew>
+L<Date::Calendar::Hebrew|https://raku.land/zef:jforget/Date::Calendar::Hebrew>
 or L<https://github.com/jforget/raku-Date-Calendar-Hebrew>
 
-L<Date::Calendar::FrenchRevolutionary>
+L<Date::Calendar::FrenchRevolutionary|https://raku.land/zef:jforget/Date::Calendar::FrenchRevolutionary>
 or L<https://github.com/jforget/raku-Date-Calendar-FrenchRevolutionary>
 
-L<Date::Calendar::Julian>
+L<Date::Calendar::Julian|https://raku.land/zef:jforget/Date::Calendar::Julian>
 or L<https://github.com/jforget/raku-Date-Calendar-Julian>
 
-L<Date::Calendar::Hijri>
+L<Date::Calendar::Hijri|https://raku.land/zef:jforget/Date::Calendar::Hijri>
 or L<https://github.com/jforget/raku-Date-Calendar-Hijri>
 
-L<Date::Calendar::MayaAztec>
+L<Date::Calendar::MayaAztec|https://raku.land/zef:jforget/Date::Calendar::MayaAztec>
 or L<https://github.com/jforget/raku-Date-Calendar-MayaAztec>
 
-L<Date::Calendar::Persian>
+L<Date::Calendar::Persian|https://raku.land/zef:jforget/Date::Calendar::Persian>
 or L<https://github.com/jforget/raku-Date-Calendar-Persian>
 
-L<Date::Calendar::Bahai>
+L<Date::Calendar::Bahai|https://raku.land/zef:jforget/Date::Calendar::Bahai>
 or L<https://github.com/jforget/raku-Date-Calendar-Bahai>
 
 =head2 Perl 5 Software
 
-L<DateTime>
+L<DateTime|https://metacpan.org/pod/DateTime>
 
-L<Date::Converter>
+L<Date::Converter|https://metacpan.org/pod/Date::Converter>
 
 =head2 Other Software
 
 date(1), strftime(3)
 
-F<calendar/cal-coptic.el>  in Emacs.
+C<calendar/cal-coptic.el>  in Emacs.
 
 CALENDRICA 4.0 -- Common Lisp, which can be download in the "Resources" section of
 L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-general-interest/calendrical-calculations-ultimate-edition-4th-edition?format=PB&isbn=9781107683167>
