@@ -1,0 +1,151 @@
+#
+# Checking the conversions with newer 0.1.x modules
+#
+
+use v6.d;
+use Test;
+use lib '../version-new/lib';
+use lib 'lib';
+use Date::Calendar::Strftime:ver<0.1.0>;
+use Date::Calendar::Aztec;
+use Date::Calendar::Aztec::Cortes;
+use Date::Calendar::Bahai;
+use Date::Calendar::Bahai::Astronomical;
+use Date::Calendar::Coptic;
+use Date::Calendar::Ethiopic;
+use Date::Calendar::Hebrew;
+use Date::Calendar::Hijri;
+use Date::Calendar::Gregorian;
+use Date::Calendar::FrenchRevolutionary;
+use Date::Calendar::FrenchRevolutionary::Arithmetic;
+use Date::Calendar::FrenchRevolutionary::Astronomical;
+use Date::Calendar::Julian;
+use Date::Calendar::Julian::AUC;
+use Date::Calendar::Maya;
+use Date::Calendar::Maya::Astronomical;
+use Date::Calendar::Maya::Spinden;
+use Date::Calendar::Persian;
+use Date::Calendar::Persian::Astronomical;
+
+my $ver-co = '0.1.0';
+my @data  = (
+       (1740,  4, 14, after-sunset,   'co', "Tkyriakē 14 Kia 1740 ☽"      , "Tky 14 Kia 1740 ☽", "Gregorian: 2023-12-23")
+     , (1740,  4, 14, before-sunrise, 'co', "Tkyriakē 14 Kia 1740 ☾"      , "Tky 14 Kia 1740 ☾", "Gregorian: 2023-12-24")
+     , (1740,  4, 14, daylight,       'co', "Tkyriakē 14 Kia 1740 ☼"      , "Tky 14 Kia 1740 ☼", "Gregorian: 2023-12-24")
+     , (1739,  2, 12, after-sunset,   'et', "Ehud 12 Teq 2015 ☽"          , "Psa 12 Pao 1739 ☽", "Gregorian: 2022-10-21")
+     , (1739,  2, 12, before-sunrise, 'et', "Ehud 12 Teq 2015 ☾"          , "Psa 12 Pao 1739 ☾", "Gregorian: 2022-10-22")
+     , (1739,  2, 12, daylight,       'et', "Ehud 12 Teq 2015 ☼"          , "Psa 12 Pao 1739 ☼", "Gregorian: 2022-10-22")
+     , (1741,  7, 23, after-sunset,   'fr', "Primidi 11 Ger 0233 ☽"       , "Psh 23 Par 1741 ☽", "Gregorian: 2025-03-31")
+     , (1741,  7, 23, before-sunrise, 'fr', "Duodi 12 Ger 0233 ☾"         , "Psh 23 Par 1741 ☾", "Gregorian: 2025-04-01")
+     , (1741,  7, 23, daylight,       'fr', "Duodi 12 Ger 0233 ☼"         , "Psh 23 Par 1741 ☼", "Gregorian: 2025-04-01")
+     , (1739,  6, 17, after-sunset,   'fa', "Quintidi 05 Vnt 0231 ☽"      , "Pso 17 Mes 1739 ☽", "Gregorian: 2023-02-23")
+     , (1739,  6, 17, before-sunrise, 'fa', "Sextidi 06 Vnt 0231 ☾"       , "Pso 17 Mes 1739 ☾", "Gregorian: 2023-02-24")
+     , (1739,  6, 17, daylight,       'fa', "Sextidi 06 Vnt 0231 ☼"       , "Pso 17 Mes 1739 ☼", "Gregorian: 2023-02-24")
+     , (1740,  9,  8, after-sunset,   'fe', "Sextidi 26 Flo 0232 ☽"       , "Pti 08 Pas 1740 ☽", "Gregorian: 2024-05-15")
+     , (1740,  9,  8, before-sunrise, 'fe', "Septidi 27 Flo 0232 ☾"       , "Pti 08 Pas 1740 ☾", "Gregorian: 2024-05-16")
+     , (1740,  9,  8, daylight,       'fe', "Septidi 27 Flo 0232 ☼"       , "Pti 08 Pas 1740 ☼", "Gregorian: 2024-05-16")
+     , (1741,  3,  5, after-sunset,   'gr', "Wednesday 13 Nov 2024 ☽"     , "Pti 05 Hat 1741 ☽", "Gregorian: 2024-11-13")
+     , (1741,  3,  5, before-sunrise, 'gr', "Thursday 14 Nov 2024 ☾"      , "Pti 05 Hat 1741 ☾", "Gregorian: 2024-11-14")
+     , (1741,  3,  5, daylight,       'gr', "Thursday 14 Nov 2024 ☼"      , "Pti 05 Hat 1741 ☼", "Gregorian: 2024-11-14")
+     , (1740, 10, 11, after-sunset,   'he', "Yom Shlishi 12 Siv 5784 ☽"   , "Psh 11 Pan 1740 ☽", "Gregorian: 2024-06-17")
+     , (1740, 10, 11, before-sunrise, 'he', "Yom Shlishi 12 Siv 5784 ☾"   , "Psh 11 Pan 1740 ☾", "Gregorian: 2024-06-18")
+     , (1740, 10, 11, daylight,       'he', "Yom Shlishi 12 Siv 5784 ☼"   , "Psh 11 Pan 1740 ☼", "Gregorian: 2024-06-18")
+     , (1738,  8,  5, after-sunset,   'hi', "Yaum al-Arbi'a 11 Ram 1443 ☽", "Pef 05 Pam 1738 ☽", "Gregorian: 2022-04-12")
+     , (1738,  8,  5, before-sunrise, 'hi', "Yaum al-Arbi'a 11 Ram 1443 ☾", "Pef 05 Pam 1738 ☾", "Gregorian: 2022-04-13")
+     , (1738,  8,  5, daylight,       'hi', "Yaum al-Arbi'a 11 Ram 1443 ☼", "Pef 05 Pam 1738 ☼", "Gregorian: 2022-04-13")
+     , (1740,  4, 16, after-sunset,   'jl', "Monday 12 Dec 2023 ☽"        , "Psh 16 Kia 1740 ☽", "Gregorian: 2023-12-25")
+     , (1740,  4, 16, before-sunrise, 'jl', "Tuesday 13 Dec 2023 ☾"       , "Psh 16 Kia 1740 ☾", "Gregorian: 2023-12-26")
+     , (1740,  4, 16, daylight,       'jl', "Tuesday 13 Dec 2023 ☼"       , "Psh 16 Kia 1740 ☼", "Gregorian: 2023-12-26")
+     , (1741,  5,  8, after-sunset,   'jc', "Wednesday 02 Jan 2778 ☽"     , "Pti 08 Tob 1741 ☽", "Gregorian: 2025-01-15")
+     , (1741,  5,  8, before-sunrise, 'jc', "Thursday 03 Jan 2778 ☾"      , "Pti 08 Tob 1741 ☾", "Gregorian: 2025-01-16")
+     , (1741,  5,  8, daylight,       'jc', "Thursday 03 Jan 2778 ☼"      , "Pti 08 Tob 1741 ☼", "Gregorian: 2025-01-16")
+            );
+
+# for later tests
+my @data-to-do = (
+       (1738,  9,  7, after-sunset,   'ba', "Jamál 18 Jam 0179 ☽"         , "Tky 07 Pas 1738 ☽", "Gregorian: 2022-05-14")
+     , (1738,  9,  7, before-sunrise, 'ba', "Jamál 18 Jam 0179 ☾"         , "Tky 07 Pas 1738 ☾", "Gregorian: 2022-05-15")
+     , (1738,  9,  7, daylight,       'ba', "Jamál 18 Jam 0179 ☼"         , "Tky 07 Pas 1738 ☼", "Gregorian: 2022-05-15")
+     , (1741, 11, 21, after-sunset,   'be', "Kamál 17 Kal 0182 ☽"         , "Pes 21 Epe 1741 ☽", "Gregorian: 2025-07-27")
+     , (1741, 11, 21, before-sunrise, 'be', "Kamál 17 Kal 0182 ☾"         , "Pes 21 Epe 1741 ☾", "Gregorian: 2025-07-28")
+     , (1741, 11, 21, daylight,       'be', "Kamál 17 Kal 0182 ☼"         , "Pes 21 Epe 1741 ☼", "Gregorian: 2025-07-28")
+     , (1739, 12,  9, after-sunset,   'pe', "Do shanbe 23 Mor 1402 ☽"     , "Psh 09 Meo 1739 ☽", "Gregorian: 2023-08-14")
+     , (1739, 12,  9, before-sunrise, 'pe', "Se shanbe 24 Mor 1402 ☾"     , "Psh 09 Meo 1739 ☾", "Gregorian: 2023-08-15")
+     , (1739, 12,  9, daylight,       'pe', "Se shanbe 24 Mor 1402 ☼"     , "Psh 09 Meo 1739 ☼", "Gregorian: 2023-08-15")
+     , (1738, 10, 24, after-sunset,   'pa', "Panj shanbe 09 Tir 1401 ☽"   , "Pso 24 Pan 1738 ☽", "Gregorian: 2022-06-30")
+     , (1738, 10, 24, before-sunrise, 'pa', "Jumee 10 Tir 1401 ☾"         , "Pso 24 Pan 1738 ☾", "Gregorian: 2022-07-01")
+     , (1738, 10, 24, daylight,       'pa', "Jumee 10 Tir 1401 ☼"         , "Pso 24 Pan 1738 ☼", "Gregorian: 2022-07-01")
+            );
+my @data-maya = (
+       (1741,  2, 23, after-sunset,   'm0', "16 Zac 9 Ix"            , "Psa 23 Pao 1741 ☾", "Gregorian: 2024-11-01")
+     , (1741,  2, 23, before-sunrise, 'm0', "16 Zac 9 Ix"            , "Psa 23 Pao 1741 ☾", "Gregorian: 2024-11-02")
+     , (1741,  2, 23, daylight,       'm0', "17 Zac 9 Ix"            , "Psa 23 Pao 1741 ☼", "Gregorian: 2024-11-02")
+     , (1739,  7, 14, after-sunset,   'm1', "14 Cumku 2 Ik"          , "Pti 14 Par 1739 ☾", "Gregorian: 2023-03-22")
+     , (1739,  7, 14, before-sunrise, 'm1', "14 Cumku 2 Ik"          , "Pti 14 Par 1739 ☾", "Gregorian: 2023-03-23")
+     , (1739,  7, 14, daylight,       'm1', "15 Cumku 2 Ik"          , "Pti 14 Par 1739 ☼", "Gregorian: 2023-03-23")
+     , (1740,  3,  4, after-sunset,   'm2', " 6 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☾", "Gregorian: 2023-11-13")
+     , (1740,  3,  4, before-sunrise, 'm2', " 6 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☾", "Gregorian: 2023-11-14")
+     , (1740,  3,  4, daylight,       'm2', " 7 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☼", "Gregorian: 2023-11-14")
+     , (1741, 12, 26, after-sunset,   'a0', "13 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☾", "Gregorian: 2025-08-31")
+     , (1741, 12, 26, before-sunrise, 'a0', "13 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☾", "Gregorian: 2025-09-01")
+     , (1741, 12, 26, daylight,       'a0', "14 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☼", "Gregorian: 2025-09-01")
+     , (1740,  5,  4, after-sunset,   'a1', " 4 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☾", "Gregorian: 2024-01-12")
+     , (1740,  5,  4, before-sunrise, 'a1', " 4 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☾", "Gregorian: 2024-01-13")
+     , (1740,  5,  4, daylight,       'a1', " 5 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☼", "Gregorian: 2024-01-13")
+            );
+
+my %class =   a0 => 'Date::Calendar::Aztec'
+            , a1 => 'Date::Calendar::Aztec::Cortes'
+            , ba => 'Date::Calendar::Bahai'
+            , be => 'Date::Calendar::Bahai::Astronomical'
+            , gr => 'Date::Calendar::Gregorian'
+            , co => 'Date::Calendar::Coptic'
+            , et => 'Date::Calendar::Ethiopic'
+            , fr => 'Date::Calendar::FrenchRevolutionary'
+            , fa => 'Date::Calendar::FrenchRevolutionary::Arithmetic'
+            , fe => 'Date::Calendar::FrenchRevolutionary::Astronomical'
+            , he => 'Date::Calendar::Hebrew'
+            , hi => 'Date::Calendar::Hijri'
+            , jl => 'Date::Calendar::Julian'
+            , jc => 'Date::Calendar::Julian::AUC'
+            , m0 => 'Date::Calendar::Maya'
+            , m1 => 'Date::Calendar::Maya::Astronomical'
+            , m2 => 'Date::Calendar::Maya::Spinden'
+            , pe => 'Date::Calendar::Persian'
+            , pa => 'Date::Calendar::Persian::Astronomical'
+            ;
+
+plan 12 × @data.elems;
+
+for (@data) -> $datum {
+  my ($year, $month, $day, $daypart, $cal, $str2, $str3) = $datum;
+  my Date::Calendar::Coptic $d1 .= new(year => $year, month => $month, day => $day, daypart => $daypart);
+
+  # push-push
+  my $d2 = $d1.to-date(%class{$cal});
+  is($d2.strftime("%A %d %b %Y %Ep"), $str2, "testing push with $str2");
+  is($d2.^ver.Str.substr(0, 4), '0.1.');
+  my $d3 = $d2.to-date(%class<co>);
+  is($d3.strftime("%a %d %b %Y %Ep"), $str3, "testing push-push with $str2 and $str3");
+  is($d3.^ver, $ver-co);
+
+  # push-pull
+  my Date::Calendar::Coptic $d4 .= new-from-date($d2);
+  is($d4.strftime("%a %d %b %Y %Ep"), $str3, "testing push-pull with $str2 and $str3");
+  is($d4.^ver, $ver-co);
+
+  # pull-push
+  my $d5 = ::(%class{$cal}).new-from-date($d1);
+  is($d5.strftime("%A %d %b %Y %Ep"), $str2, "testing pull with $str2");
+  is($d5.^ver.Str.substr(0, 4), '0.1.');
+  my $d6 = $d5.to-date(%class<co>);
+  is($d6.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-push with $str2 and $str3");
+  is($d6.^ver, $ver-co);
+
+  # pull-pull
+  my Date::Calendar::Coptic $d7 .= new-from-date($d5);
+  is($d7.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-pull with $str2 and $str3");
+  is($d7.^ver, $ver-co);
+}
+
+done-testing;

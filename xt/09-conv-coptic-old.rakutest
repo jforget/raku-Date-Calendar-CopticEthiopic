@@ -1,0 +1,213 @@
+#
+# Checking the conversions with older 0.0.x modules
+#
+# This does not check that the results are right, this checks that the results are "rightly wrong".
+# For the **right** results, see 10-conv-coptic-new.rakutest
+#
+
+use v6.d;
+use Test;
+use lib '../version-old/lib';
+use lib 'lib';
+use Date::Calendar::Strftime:ver<0.1.0>;
+use Date::Calendar::Aztec;
+use Date::Calendar::Aztec::Cortes;
+use Date::Calendar::Bahai;
+use Date::Calendar::Bahai::Astronomical;
+use Date::Calendar::Coptic;
+use Date::Calendar::Ethiopic;
+use Date::Calendar::Hebrew;
+use Date::Calendar::Hijri;
+use Date::Calendar::Gregorian;
+use Date::Calendar::FrenchRevolutionary;
+use Date::Calendar::FrenchRevolutionary::Arithmetic;
+use Date::Calendar::FrenchRevolutionary::Astronomical;
+use Date::Calendar::Julian;
+use Date::Calendar::Julian::AUC;
+use Date::Calendar::Maya;
+use Date::Calendar::Maya::Astronomical;
+use Date::Calendar::Maya::Spinden;
+use Date::Calendar::Persian;
+use Date::Calendar::Persian::Astronomical;
+
+my @data-greg = (
+       (1741,  3,  5, after-sunset,   'gr', "Wednesday 13 Nov 2024"       , "Pef 04 Hat 1741 ☼", "2024-11-13 shift to previous day", '2024-11-13')
+     , (1741,  3,  5, before-sunrise, 'gr', "Thursday 14 Nov 2024"        , "Pti 05 Hat 1741 ☼", "2024-11-14 shift to daylight"    , '2024-11-14')
+     , (1741,  3,  5, daylight,       'gr', "Thursday 14 Nov 2024"        , "Pti 05 Hat 1741 ☼", "2024-11-14 no problem"           , '2024-11-14')
+            );
+
+my @data-maya = (
+       (1741,  2, 23, after-sunset,   'm0', "16 Zac 8 Ben"           , "Pso 22 Pao 1741 ☼", "2024-11-02 shift to previous date")
+     , (1741,  2, 23, before-sunrise, 'm0', "17 Zac 9 Ix"            , "Psa 23 Pao 1741 ☼", "2024-11-02 wrong intermediate date, should be 16 Zac 9 Ix")
+     , (1741,  2, 23, daylight,       'm0', "17 Zac 9 Ix"            , "Psa 23 Pao 1741 ☼", "2024-11-02 no problem")
+     , (1739,  7, 14, after-sunset,   'm1', "14 Cumku 1 Imix"        , "Pef 13 Par 1739 ☼", "2023-03-23 shift to previous date")
+     , (1739,  7, 14, before-sunrise, 'm1', "15 Cumku 2 Ik"          , "Pti 14 Par 1739 ☼", "2023-03-23 wrong intermediate date, should be 14 Cumku 2 Ik")
+     , (1739,  7, 14, daylight,       'm1', "15 Cumku 2 Ik"          , "Pti 14 Par 1739 ☼", "2023-03-23 no problem")
+     , (1740,  3,  4, after-sunset,   'm2', " 6 Ceh 4 Etznab"        , "Pes 03 Hat 1740 ☼", "2023-11-14 shift to previous date")
+     , (1740,  3,  4, before-sunrise, 'm2', " 7 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☼", "2023-11-14 wrong intermediate date, should be  6 Ceh 5 Cauac")
+     , (1740,  3,  4, daylight,       'm2', " 7 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☼", "2023-11-14 no problem")
+     , (1741, 12, 26, after-sunset,   'a0', "13 Atemoztli 12 Cozcacuauhtli", "Tky 25 Meo 1741 ☼", "2025-09-01 shift to previous date")
+     , (1741, 12, 26, before-sunrise, 'a0', "14 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☼", "2025-09-01 wrong intermediate date, should be 13 Atemoztli 13 Ollin")
+     , (1741, 12, 26, daylight,       'a0', "14 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☼", "2025-09-01 no problem")
+     , (1740,  5,  4, after-sunset,   'a1', " 4 Toxcatl 3 Ehecatl"   , "Pso 03 Tob 1740 ☼", "2024-01-13 shift to previous date")
+     , (1740,  5,  4, before-sunrise, 'a1', " 5 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☼", "2024-01-13 wrong intermediate date, should be  4 Toxcatl 4 Calli")
+     , (1740,  5,  4, daylight,       'a1', " 5 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☼", "2024-01-13 no problem")
+            );
+
+my @data-others = (
+       (1738,  9,  7, after-sunset,   'ba', "Jalál 17 Jam 0179"           , "Psa 06 Pas 1738 ☼", "2022-05-14 shift to previous day")
+     , (1738,  9,  7, before-sunrise, 'ba', "Jamál 18 Jam 0179"           , "Tky 07 Pas 1738 ☼", "2022-05-15 shift to daylight")
+     , (1738,  9,  7, daylight,       'ba', "Jamál 18 Jam 0179"           , "Tky 07 Pas 1738 ☼", "2022-05-15 no problem")
+     , (1741, 11, 21, after-sunset,   'be', "Jamál 16 Kal 0182"           , "Tky 20 Epe 1741 ☼", "2025-07-27 shift to previous day")
+     , (1741, 11, 21, before-sunrise, 'be', "Kamál 17 Kal 0182"           , "Pes 21 Epe 1741 ☼", "2025-07-28 shift to daylight")
+     , (1741, 11, 21, daylight,       'be', "Kamál 17 Kal 0182"           , "Pes 21 Epe 1741 ☼", "2025-07-28 no problem")
+     , (1741,  7, 23, after-sunset,   'fr', "Primidi 11 Ger 0233"         , "Pes 22 Par 1741 ☼", "2025-03-31 shift to previous day")
+     , (1741,  7, 23, before-sunrise, 'fr', "Duodi 12 Ger 0233"           , "Psh 23 Par 1741 ☼", "2025-04-01 shift to daylight")
+     , (1741,  7, 23, daylight,       'fr', "Duodi 12 Ger 0233"           , "Psh 23 Par 1741 ☼", "2025-04-01 no problem")
+     , (1739,  6, 17, after-sunset,   'fa', "Quintidi 05 Vnt 0231"        , "Pti 16 Mes 1739 ☼", "2023-02-23 shift to previous day")
+     , (1739,  6, 17, before-sunrise, 'fa', "Sextidi 06 Vnt 0231"         , "Pso 17 Mes 1739 ☼", "2023-02-24 shift to daylight")
+     , (1739,  6, 17, daylight,       'fa', "Sextidi 06 Vnt 0231"         , "Pso 17 Mes 1739 ☼", "2023-02-24 no problem")
+     , (1740,  9,  8, after-sunset,   'fe', "Sextidi 26 Flo 0232"         , "Pef 07 Pas 1740 ☼", "2024-05-15 shift to previous day")
+     , (1740,  9,  8, before-sunrise, 'fe', "Septidi 27 Flo 0232"         , "Pti 08 Pas 1740 ☼", "2024-05-16 shift to daylight")
+     , (1740,  9,  8, daylight,       'fe', "Septidi 27 Flo 0232"         , "Pti 08 Pas 1740 ☼", "2024-05-16 no problem")
+     , (1740, 10, 11, after-sunset,   'he', "Yom Sheni 11 Siv 5784"       , "Pes 10 Pan 1740 ☼", "2024-06-17 shift to previous day")
+     , (1740, 10, 11, before-sunrise, 'he', "Yom Shlishi 12 Siv 5784"     , "Psh 11 Pan 1740 ☼", "2024-06-18 shift to daylight")
+     , (1740, 10, 11, daylight,       'he', "Yom Shlishi 12 Siv 5784"     , "Psh 11 Pan 1740 ☼", "2024-06-18 no problem")
+     , (1738,  8,  5, after-sunset,   'hi', "Yaum al-Thulatha 10 Ram 1443", "Psh 04 Pam 1738 ☼", "2022-04-12 shift to previous day")
+     , (1738,  8,  5, before-sunrise, 'hi', "Yaum al-Arbi'a 11 Ram 1443"  , "Pef 05 Pam 1738 ☼", "2022-04-13 shift to daylight")
+     , (1738,  8,  5, daylight,       'hi', "Yaum al-Arbi'a 11 Ram 1443"  , "Pef 05 Pam 1738 ☼", "2022-04-13 no problem")
+     , (1740,  4, 16, after-sunset,   'jl', "Monday 12 Dec 2023"          , "Pes 15 Kia 1740 ☼", "2023-12-25 shift to previous day")
+     , (1740,  4, 16, before-sunrise, 'jl', "Tuesday 13 Dec 2023"         , "Psh 16 Kia 1740 ☼", "2023-12-26 shift to daylight")
+     , (1740,  4, 16, daylight,       'jl', "Tuesday 13 Dec 2023"         , "Psh 16 Kia 1740 ☼", "2023-12-26 no problem")
+     , (1741,  5,  8, after-sunset,   'jc', "Wednesday 02 Jan 2778"       , "Pef 07 Tob 1741 ☼", "2025-01-15 shift to previous day")
+     , (1741,  5,  8, before-sunrise, 'jc', "Thursday 03 Jan 2778"        , "Pti 08 Tob 1741 ☼", "2025-01-16 shift to daylight")
+     , (1741,  5,  8, daylight,       'jc', "Thursday 03 Jan 2778"        , "Pti 08 Tob 1741 ☼", "2025-01-16 no problem")
+     , (1739, 12,  9, after-sunset,   'pe', "Do shanbe 23 Mor 1402"       , "Pes 08 Meo 1739 ☼", "2023-08-14 shift to previous day")
+     , (1739, 12,  9, before-sunrise, 'pe', "Se shanbe 24 Mor 1402"       , "Psh 09 Meo 1739 ☼", "2023-08-15 shift to daylight")
+     , (1739, 12,  9, daylight,       'pe', "Se shanbe 24 Mor 1402"       , "Psh 09 Meo 1739 ☼", "2023-08-15 no problem")
+     , (1738, 10, 24, after-sunset,   'pa', "Panj shanbe 09 Tir 1401"     , "Pti 23 Pan 1738 ☼", "2022-06-30 shift to previous day")
+     , (1738, 10, 24, before-sunrise, 'pa', "Jumee 10 Tir 1401"           , "Pso 24 Pan 1738 ☼", "2022-07-01 shift to daylight")
+     , (1738, 10, 24, daylight,       'pa', "Jumee 10 Tir 1401"           , "Pso 24 Pan 1738 ☼", "2022-07-01 no problem")
+            );
+
+my %class =   a0 => 'Date::Calendar::Aztec'
+            , a1 => 'Date::Calendar::Aztec::Cortes'
+            , ba => 'Date::Calendar::Bahai'
+            , be => 'Date::Calendar::Bahai::Astronomical'
+            , gr => 'Date::Calendar::Gregorian'
+            , co => 'Date::Calendar::Coptic'
+            , et => 'Date::Calendar::Ethiopic'
+            , fr => 'Date::Calendar::FrenchRevolutionary'
+            , fa => 'Date::Calendar::FrenchRevolutionary::Arithmetic'
+            , fe => 'Date::Calendar::FrenchRevolutionary::Astronomical'
+            , he => 'Date::Calendar::Hebrew'
+            , hi => 'Date::Calendar::Hijri'
+            , jl => 'Date::Calendar::Julian'
+            , jc => 'Date::Calendar::Julian::AUC'
+            , m0 => 'Date::Calendar::Maya'
+            , m1 => 'Date::Calendar::Maya::Astronomical'
+            , m2 => 'Date::Calendar::Maya::Spinden'
+            , pe => 'Date::Calendar::Persian'
+            , pa => 'Date::Calendar::Persian::Astronomical'
+            ;
+
+my %ver   =   a0 => '0.0.3'
+            , a1 => '0.0.3'
+            , ba => '0.0.2'
+            , pe => '0.0.2'
+            , be => '0.0.2'
+            , co => '0.0.3'
+            , et => '0.0.3'
+            , fr => '0.0.6'
+            , fa => '0.0.6'
+            , fe => '0.0.6'
+            , gr => '0.0.2'
+            , he => '0.0.4'
+            , hi => '0.0.2'
+            , jl => '0.0.4'
+            , jc => '0.0.4'
+            , m0 => '0.0.3'
+            , m1 => '0.0.3'
+            , m2 => '0.0.3'
+            , pe => '0.0.2'
+            , pa => '0.0.2'
+            ;
+
+plan 15 × @data-greg.elems + 12 × @data-others.elems + 12 × @data-maya.elems;
+
+for (|@data-greg, |@data-others) -> $datum {
+  my ($year, $month, $day, $daypart, $cal, $str2, $str3, $result) = $datum;
+  my Date::Calendar::Coptic $d1 .= new(year => $year, month => $month, day => $day, daypart => $daypart);
+
+  # push-push
+  my $d2 = $d1.to-date(%class{$cal});
+  is($d2.strftime("%A %d %b %Y"), $str2, "testing push to $str2");
+  is($d2.^ver, %ver{$cal});
+  my $d3 = $d2.to-date(%class<co>);
+  is($d3.strftime("%a %d %b %Y %Ep"), $str3, "testing push-push to $str2 and $str3, $result");
+  is($d3.^ver.Str.substr(0, 4), '0.1.');
+
+  # push-pull
+  my Date::Calendar::Coptic $d4 .= new-from-date($d2);
+  is($d4.strftime("%a %d %b %Y %Ep"), $str3, "testing push-pull to $str2 and $str3, $result");
+  is($d4.^ver.Str.substr(0, 4), '0.1.');
+
+  # pull-push
+  my $d5 = ::(%class{$cal}).new-from-date($d1);
+  is($d5.strftime("%A %d %b %Y"), $str2, "testing pull to $str2");
+  is($d5.^ver, %ver{$cal});
+  my $d6 = $d5.to-date(%class<co>);
+  is($d6.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-push to $str2 and $str3, $result");
+  is($d6.^ver.Str.substr(0, 4), '0.1.');
+
+  # pull-pull
+  my Date::Calendar::Coptic $d7 .= new-from-date($d5);
+  is($d7.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-pull to $str2 and $str3, $result");
+  is($d7.^ver.Str.substr(0, 4), '0.1.');
+}
+
+for (@data-maya) -> $datum {
+  my ($year, $month, $day, $daypart, $cal, $str2, $str3, $result) = $datum;
+  my Date::Calendar::Coptic $d1 .= new(year => $year, month => $month, day => $day, daypart => $daypart);
+  my Str $str1 = $d1.strftime("%a %d %b %Y %Ep");
+
+  # push-push
+  my $d2 = $d1.to-date(%class{$cal});
+  is($d2.strftime("%e %B %V %A"), $str2, "testing push to $str2");
+  is($d2.^ver, %ver{$cal});
+  my $d3 = $d2.to-date(%class<co>);
+  is($d3.strftime("%a %d %b %Y %Ep"), $str3, "testing push-push $str1 to $str2 and $str3, $result");
+  is($d3.^ver.Str.substr(0, 4), '0.1.');
+
+  # push-pull
+  my Date::Calendar::Coptic $d4 .= new-from-date($d2);
+  is($d4.strftime("%a %d %b %Y %Ep"), $str3, "testing push-pull $str1 to $str2 and $str3, $result");
+  is($d4.^ver.Str.substr(0, 4), '0.1.');
+
+  # pull-push
+  my $d5 = ::(%class{$cal}).new-from-date($d1);
+  is($d5.strftime("%e %B %V %A"), $str2, "testing pull to $str2");
+  is($d5.^ver, %ver{$cal});
+  my $d6 = $d5.to-date(%class<co>);
+  is($d6.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-push $str1 to $str2 and $str3, $result");
+  is($d6.^ver.Str.substr(0, 4), '0.1.');
+
+  # pull-pull
+  my Date::Calendar::Coptic $d7 .= new-from-date($d5);
+  is($d7.strftime("%a %d %b %Y %Ep"), $str3, "testing pull-pull $str1 to $str2 and $str3, $result");
+  is($d7.^ver.Str.substr(0, 4), '0.1.');
+}
+
+# Conversion with core class Date: only push-pull tests
+for (@data-greg) -> $datum {
+  my ($year, $month, $day, $daypart, $cal, $str2, $str3, $result, $str4) = $datum;
+  my Date::Calendar::Coptic $d1 .= new(year => $year, month => $month, day => $day, daypart => $daypart);
+
+  my $d2 = $d1.to-date('Date');
+  is($d2.gist, $str4, "testing push from $year-$month-$day to $str4");
+  my Date::Calendar::Coptic $d3 .= new-from-date($d2);
+  is($d3.strftime("%a %d %b %Y %Ep"), $str3, "testing push-pull from $year-$month-$day to Gregorian $str4 and then $str3, $result");
+  is($d3.^ver.Str.substr(0, 4), '0.1.');
+}
+
+done-testing;

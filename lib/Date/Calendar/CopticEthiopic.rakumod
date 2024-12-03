@@ -1,11 +1,13 @@
 # -*- encoding: utf-8; indent-tabs-mode: nil -*-
 use v6.d;
+use Date::Calendar::Strftime;
 unit role Date::Calendar::CopticEthiopic:ver<0.1.0>:auth<zef:jforget>:api<1>;
 
 has Int $.year  where { $_ ≥ 1 };
 has Int $.month where { 1 ≤ $_ ≤ 13 };
 has Int $.day   where { 1 ≤ $_ ≤ 30 };
 has Int $.daycount;
+has Int $.daypart where { before-sunrise() ≤ $_ ≤ after-sunset() };
 has Int $.day-of-year;
 has Int $.day-of-week;
 has Int $.week-number;
@@ -37,15 +39,20 @@ method _chek-build-args(Int $year, Int $month, Int $day) {
   }
 }
 
-method _build-from-args(Int $year, Int $month, Int $day) {
-  $!year   = $year;
-  $!month  = $month;
-  $!day    = $day;
+method _build-from-args(Int $year, Int $month, Int $day, Int $daypart) {
+  $!year    = $year;
+  $!month   = $month;
+  $!day     = $day;
+  $!daypart = $daypart;
 
   # computing derived attributes
   my Int $doy       = 30 × ($month - 1) + $day;
   my Int $daycount  = (365.25 × $year).floor + $doy + $.mjd-bias;
   my Int $dow       = ($daycount + 3) % 7 + 1;
+  if $daypart == after-sunset() {
+    # after computing $dow and $doy, not before!
+    --$daycount;
+  }
 
   # storing derived attributes
   $!day-of-year = $doy;
@@ -75,7 +82,10 @@ method _build-from-args(Int $year, Int $month, Int $day) {
   $!week-year   = $week-year;
 }
 
-method new-from-daycount(Int $count) {
+method new-from-daycount(Int $count is copy, Int :$daypart = daylight()) {
+  if $daypart == after-sunset() {
+    ++$count;
+  }
   my ($nb, $m, $d);  # zero-based values
   my $y;
 
@@ -88,16 +98,16 @@ method new-from-daycount(Int $count) {
   $nb -= $m × 30;
   $d   = $nb;
 
-  $.new(year => $y, month => $m + 1, day => $d + 1);
+  $.new(year => $y, month => $m + 1, day => $d + 1, daypart => $daypart);
 }
 
 method new-from-date($date) {
-  $.new-from-daycount($date.daycount);
+  $.new-from-daycount($date.daycount, daypart => $date.?daypart // daylight());
 }
 
 method to-date($class = 'Date') {
   # See "Learning Perl 6" page 177
-  my $d = ::($class).new-from-daycount($.daycount);
+  my $d = ::($class).new-from-daycount($.daycount, daypart => $.daypart);
   return $d;
 }
 

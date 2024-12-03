@@ -3,11 +3,12 @@
 #
 use v6.d;
 use Test;
+use Date::Calendar::Strftime;
 use Date::Calendar::Coptic;
 use Date::Calendar::Ethiopic;
 
 plan  3  # objects
-   × 13; # accessors
+   × 14; # accessors
 
 my Date::Calendar::Coptic $dc .= new(year => 1736, month => 3, day => 10);
 
@@ -24,6 +25,7 @@ is($dc.month-name , 'Hathor');
 is($dc.month-abbr , 'Hat');
 is($dc.day-name   , 'Peftoou');
 is($dc.day-abbr   , 'Pef');
+is($dc.daypart    , daylight);
 
 $dc .= new(year => 1735, month => 13, day => 6);
 
@@ -40,6 +42,7 @@ is($dc.month-name , 'Pi Kogi Enavot');
 is($dc.month-abbr , 'Kou');
 is($dc.day-name   , 'Peftoou');
 is($dc.day-abbr   , 'Pef');
+is($dc.daypart    , daylight);
 
 my Date::Calendar::Ethiopic $de .= new(year => 2012, month => 3, day => 10);
 
@@ -56,6 +59,7 @@ is($de.month-name , 'Ḫədar');
 is($de.month-abbr , 'Hed');
 is($de.day-name   , 'Hamus');
 is($de.day-abbr   , 'Ham');
+is($de.daypart    , daylight);
 
 
 done-testing;

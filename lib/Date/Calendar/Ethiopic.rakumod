@@ -9,9 +9,9 @@ unit class Date::Calendar::Ethiopic:ver<0.1.0>:auth<zef:jforget>:api<1>
       does Date::Calendar::CopticEthiopic
       does Date::Calendar::Strftime;
 
-method BUILD(Int:D :$year, Int:D :$month, Int:D :$day) {
+method BUILD(Int:D :$year, Int:D :$month, Int:D :$day, Int :$daypart = daylight()) {
   $._chek-build-args($year, $month, $day);
-  $._build-from-args($year, $month, $day);
+  $._build-from-args($year, $month, $day, $daypart);
 }
 
 method mjd-bias {
