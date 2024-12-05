@@ -37,19 +37,19 @@ my @data-greg = (
             );
 
 my @data-maya = (
-       (1741,  2, 23, after-sunset,   'm0', "16 Zac 8 Ben"           , "Pso 22 Pao 1741 ☼", "2024-11-02 shift to previous date")
+       (1741,  2, 23, after-sunset,   'm0', "16 Zac 8 Ben"           , "Pso 22 Pao 1741 ☼", "2024-11-01 shift to previous date, wrong clerical date, should be 16 Zac 9 Ix")
      , (1741,  2, 23, before-sunrise, 'm0', "17 Zac 9 Ix"            , "Psa 23 Pao 1741 ☼", "2024-11-02 wrong intermediate date, should be 16 Zac 9 Ix")
      , (1741,  2, 23, daylight,       'm0', "17 Zac 9 Ix"            , "Psa 23 Pao 1741 ☼", "2024-11-02 no problem")
-     , (1739,  7, 14, after-sunset,   'm1', "14 Cumku 1 Imix"        , "Pef 13 Par 1739 ☼", "2023-03-23 shift to previous date")
+     , (1739,  7, 14, after-sunset,   'm1', "14 Cumku 1 Imix"        , "Pef 13 Par 1739 ☼", "2023-03-22 shift to previous date, wrong clerical date, should be 14 Cumku 2 Ik")
      , (1739,  7, 14, before-sunrise, 'm1', "15 Cumku 2 Ik"          , "Pti 14 Par 1739 ☼", "2023-03-23 wrong intermediate date, should be 14 Cumku 2 Ik")
      , (1739,  7, 14, daylight,       'm1', "15 Cumku 2 Ik"          , "Pti 14 Par 1739 ☼", "2023-03-23 no problem")
-     , (1740,  3,  4, after-sunset,   'm2', " 6 Ceh 4 Etznab"        , "Pes 03 Hat 1740 ☼", "2023-11-14 shift to previous date")
+     , (1740,  3,  4, after-sunset,   'm2', " 6 Ceh 4 Etznab"        , "Pes 03 Hat 1740 ☼", "2023-11-13 shift to previous date, wrong clerical date, should be  6 Ceh 5 Cauac")
      , (1740,  3,  4, before-sunrise, 'm2', " 7 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☼", "2023-11-14 wrong intermediate date, should be  6 Ceh 5 Cauac")
      , (1740,  3,  4, daylight,       'm2', " 7 Ceh 5 Cauac"         , "Psh 04 Hat 1740 ☼", "2023-11-14 no problem")
-     , (1741, 12, 26, after-sunset,   'a0', "13 Atemoztli 12 Cozcacuauhtli", "Tky 25 Meo 1741 ☼", "2025-09-01 shift to previous date")
+     , (1741, 12, 26, after-sunset,   'a0', "13 Atemoztli 12 Cozcacuauhtli", "Tky 25 Meo 1741 ☼", "2025-08-31 shift to previous date, wrong clerical date, should be 13 Atemoztli 13 Ollin")
      , (1741, 12, 26, before-sunrise, 'a0', "14 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☼", "2025-09-01 wrong intermediate date, should be 13 Atemoztli 13 Ollin")
      , (1741, 12, 26, daylight,       'a0', "14 Atemoztli 13 Ollin"  , "Pes 26 Meo 1741 ☼", "2025-09-01 no problem")
-     , (1740,  5,  4, after-sunset,   'a1', " 4 Toxcatl 3 Ehecatl"   , "Pso 03 Tob 1740 ☼", "2024-01-13 shift to previous date")
+     , (1740,  5,  4, after-sunset,   'a1', " 4 Toxcatl 3 Ehecatl"   , "Pso 03 Tob 1740 ☼", "2024-01-12 shift to previous date, wrong clerical date, should be  4 Toxcatl 4 Calli")
      , (1740,  5,  4, before-sunrise, 'a1', " 5 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☼", "2024-01-13 wrong intermediate date, should be  4 Toxcatl 4 Calli")
      , (1740,  5,  4, daylight,       'a1', " 5 Toxcatl 4 Calli"     , "Psa 04 Tob 1740 ☼", "2024-01-13 no problem")
             );

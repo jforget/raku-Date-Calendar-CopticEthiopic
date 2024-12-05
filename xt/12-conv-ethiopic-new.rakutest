@@ -77,21 +77,22 @@ my @data-to-do = (
      , (2014, 11, 14, daylight,       'pa', "Panj shanbe 30 Tir 1401 ☼"   , "Arb 14 Ham 2014 ☼", "Gregorian: 2022-07-21")
             );
 my @data-maya = (
-       (2017,  2, 13, after-sunset,   'm0', " 6 Zac 12 Kan"          , "Ham 13 Teq 2017 ☾", "Gregorian: 2024-10-22")
+       (2017,  2, 13, after-sunset,   'm0', " 6 Zac 12 Kan"          , "Ham 13 Teq 2017 ☽", "Gregorian: 2024-10-22")
      , (2017,  2, 13, before-sunrise, 'm0', " 6 Zac 12 Kan"          , "Ham 13 Teq 2017 ☾", "Gregorian: 2024-10-23")
      , (2017,  2, 13, daylight,       'm0', " 7 Zac 12 Kan"          , "Ham 13 Teq 2017 ☼", "Gregorian: 2024-10-23")
-     , (2015,  5, 24, after-sunset,   'm1', " 4 Pax 4 Eb"            , "Ham 24 Ter 2015 ☾", "Gregorian: 2023-01-31")
+     , (2015,  5, 24, after-sunset,   'm1', " 4 Pax 4 Eb"            , "Ham 24 Ter 2015 ☽", "Gregorian: 2023-01-31")
      , (2015,  5, 24, before-sunrise, 'm1', " 4 Pax 4 Eb"            , "Ham 24 Ter 2015 ☾", "Gregorian: 2023-02-01")
      , (2015,  5, 24, daylight,       'm1', " 5 Pax 4 Eb"            , "Ham 24 Ter 2015 ☼", "Gregorian: 2023-02-01")
-     , (2016,  1, 24, after-sunset,   'm2', " 6 Yax 4 Cauac"         , "Arb 24 Mes 2016 ☾", "Gregorian: 2023-10-04")
+     , (2016,  1, 24, after-sunset,   'm2', " 6 Yax 4 Cauac"         , "Arb 24 Mes 2016 ☽", "Gregorian: 2023-10-04")
      , (2016,  1, 24, before-sunrise, 'm2', " 6 Yax 4 Cauac"         , "Arb 24 Mes 2016 ☾", "Gregorian: 2023-10-05")
      , (2016,  1, 24, daylight,       'm2', " 7 Yax 4 Cauac"         , "Arb 24 Mes 2016 ☼", "Gregorian: 2023-10-05")
-     , (2017,  2, 14, after-sunset,   'a0', " 1 Atlcahualo 13 Coatl" , "Arb 14 Teq 2017 ☾", "Gregorian: 2024-10-23")
+     , (2017,  2, 14, after-sunset,   'a0', " 1 Atlcahualo 13 Coatl" , "Arb 14 Teq 2017 ☽", "Gregorian: 2024-10-23")
      , (2017,  2, 14, before-sunrise, 'a0', " 1 Atlcahualo 13 Coatl" , "Arb 14 Teq 2017 ☾", "Gregorian: 2024-10-24")
      , (2017,  2, 14, daylight,       'a0', " 2 Atlcahualo 13 Coatl" , "Arb 14 Teq 2017 ☼", "Gregorian: 2024-10-24")
-     , (2016, 10,  4, after-sunset,   'a1', "14 Teotleco 11 Acatl"   , "Rob 04 Sen 2016 ☾", "Gregorian: 2024-06-10")
+     , (2016, 10,  4, after-sunset,   'a1', "14 Teotleco 11 Acatl"   , "Rob 04 Sen 2016 ☽", "Gregorian: 2024-06-10")
      , (2016, 10,  4, before-sunrise, 'a1', "14 Teotleco 11 Acatl"   , "Rob 04 Sen 2016 ☾", "Gregorian: 2024-06-11")
      , (2016, 10,  4, daylight,       'a1', "15 Teotleco 11 Acatl"   , "Rob 04 Sen 2016 ☼", "Gregorian: 2024-06-11")
+
             );
 
 my %class =   a0 => 'Date::Calendar::Aztec'
