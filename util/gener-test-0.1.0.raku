@@ -89,7 +89,7 @@ gener-maya('co', 'm2', 1740,  3,  4);
 gener-maya('co', 'a0', 1741, 12, 26);
 gener-maya('co', 'a1', 1740,  5,  4);
 say '-' x 50;
-say '10-conv-coptic-new.rakutest, @data-to-do and @data';
+say '10-conv-coptic-new.rakutest, @data';
 say @new-others.join("");
 say '-' x 50;
 say '10-conv-coptic-new.rakutest, @data-maya';
@@ -121,7 +121,7 @@ gener-maya('et', 'm2', 2016,  1, 24);
 gener-maya('et', 'a0', 2017,  2, 14);
 gener-maya('et', 'a1', 2016, 10,  4);
 say '-' x 50;
-say '12-conv-ethiopic-new.rakutest, @data-to-do and @data';
+say '12-conv-ethiopic-new.rakutest, @data';
 say @new-others.join("");
 say '-' x 50;
 say '12-conv-ethiopic-new.rakutest, @data-maya';
@@ -333,15 +333,7 @@ Remove the first comma in the C<@data-greg> and C<@data> variables.
 =head2 Other dates, test file for new conversions
 
 Cut and past  the lines into the C<@data> variable  of the proper test
-file.  Then,  from  this  variable,  select  the  lines  dealing  with
-calendars  not  yet  updated,   cut-and-paste  these  lines  into  the
-C<@data-to-do>  variable. Erase  the comma  at the  beginning of  both
-variables.
-
-Then, each time you convert another calendar (or each time you clone a
-newly  converted  calendar), cut-and-paste  the  test  lines for  this
-calendar from the C<@data-to-do>  variable into the C<@data> variable.
-Remember to check the commas separating the items in these variables.
+file.
 
 All computed  dates are daylight  dates. So  it does not  matter which
 version  and API  are  such  and such  classes.  Daylight dates  gives

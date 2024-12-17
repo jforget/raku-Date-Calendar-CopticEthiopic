@@ -176,6 +176,40 @@ $TPC-Pittsburgh-grg2 = $TPC-Pittsburgh-eth.to-date;
 
 =end code
 
+Converting a date from Gregorian to Coptic and Ethiopic, while paying
+attention to the sunset:
+
+=begin code :lang<raku>
+
+use Date::Calendar::Strftime;
+use Date::Calendar::Gregorian;
+use Date::Calendar::Coptic;
+use Date::Calendar::Ethiopic;
+
+my Date::Calendar::Gregorian $d-grg;
+my Date::Calendar::Coptic    $d-cop;
+my Date::Calendar::Ethiopic  $d-eth;
+
+$d-grg .= new('2024-11-13', daypart => before-sunrise());
+$d-cop .= new-from-date($d-grg);
+$d-eth .= new-from-date($d-grg);
+say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
+# -->  Peftoou  4 Hathor 1741 Hamus  4 Ḫədar 2017
+
+$d-grg .= new('2024-11-13', daypart => daylight());
+$d-cop .= new-from-date($d-grg);
+$d-eth .= new-from-date($d-grg);
+say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
+# -->  Peftoou  4 Hathor 1741 Hamus  4 Ḫədar 2017 (again)
+
+$d-grg .= new('2024-11-13', daypart => after-sunset());
+$d-cop .= new-from-date($d-grg);
+$d-eth .= new-from-date($d-grg);
+say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
+# -->  Ptiou  5 Hathor 1741 Arb  5 Ḫədar 2017
+
+=end code
+
 =head1 DESCRIPTION
 
 Date::Calendar::CopticEthiopic is a  module distribution providing two
@@ -221,9 +255,9 @@ A  number indicating  which part  of the  day. This  number should  be
 filled   and   compared   with   the   following   subroutines,   with
 self-documenting names:
 
-=item before-sunrise
-=item daylight
-=item after-sunset
+=item before-sunrise()
+=item daylight()
+=item after-sunset()
 
 =head3 month-name
 
@@ -488,6 +522,39 @@ Ethiopic or  Ethiopian? Some English-speaking sources  (see below) use
 Ethiopic, the others use Ethiopian. Since the first source I have read
 is Reingold's and Dershowitz' book, I have used the same term as them,
 Ethiopic.
+
+=head2 Security issues
+
+As explained in  the C<Date::Calendar::Strftime> documentation, please
+ensure that format-string  passed to C<strftime> comes  from a trusted
+source. Failing  that, the untrusted  source can include  a outrageous
+length in  a C<strftime> specifier and  this will drain your  PC's RAM
+very fast.
+
+=head2 Relations with :ver<0.0.x> classes
+
+Version 0.1.0 (and API 1) was  introduced to ease the conversions with
+other calendars  in which the  day is defined as  sunset-to-sunset. If
+all C<Date::Calendar::>R<xxx> classes use version 0.1.x and API 1, the
+conversions  will be  correct. But  if some  C<Date::Calendar::>R<xxx>
+classes use version 0.0.x and API 0, there might be problems.
+
+A date from a 0.0.x class has no C<daypart> attribute. But when "seen"
+from  a  0.1.x class,  the  0.0.x  date  seems  to have  a  C<daypart>
+attribute equal to C<daylight>. When converted from a 0.1.x class to a
+0.0.x  class,  the  date  may  just  shift  from  C<after-sunset>  (or
+C<before-sunrise>) to C<daylight>, or it  may shift to the C<daylight>
+part of  the prior (or  next) date. This  means that a  roundtrip with
+cascade conversions  may give the  starting date,  or it may  give the
+date prior or after the starting date.
+
+=head2 Time
+
+This module  and the C<Date::Calendar::>R<xxx> associated  modules are
+still date  modules, they are not  date-time modules. The user  has to
+give  the C<daypart>  attribute  as a  value among  C<before-sunrise>,
+C<daylight> or C<after-sunset>. There is no provision to give a HHMMSS
+time and convert it to a C<daypart> parameter.
 
 =head1 SEE ALSO
 

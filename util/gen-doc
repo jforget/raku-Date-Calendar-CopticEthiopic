@@ -11,10 +11,11 @@ raku --doc=HTML lib/Date/Calendar/Coptic.rakumod          > $DOC/Coptic.html
 raku --doc=HTML lib/Date/Calendar/Coptic/Names.rakumod    > $DOC/Coptic-Names.html
 raku --doc=HTML lib/Date/Calendar/Ethiopic.rakumod        > $DOC/Ethiopic.html
 raku --doc=HTML lib/Date/Calendar/Ethiopic/Names.rakumod  > $DOC/Ethiopic-Names.html
+raku --doc=HTML util/gener-test-0.1.0.raku                > $DOC/gener-test.html
 
 case $1 in
    --show)
      cd $DOC
-     firefox Coptic-Ethiopic.html Coptic.html Coptic-Names.html Ethiopic.html Ethiopic-Names.html
+     firefox Coptic-Ethiopic.html Coptic.html Coptic-Names.html Ethiopic.html Ethiopic-Names.html gener-test.html
      ;;
 esac
