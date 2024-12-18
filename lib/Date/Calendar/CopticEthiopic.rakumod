@@ -168,11 +168,13 @@ my Date                     $TPC-Pittsburgh-grg2;
 
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg1 = $TPC-Pittsburgh-cop.to-date;
-#--> 9 Paoni 1735 = 16 June 2019
+say $TPC-Pittsburgh-cop.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg1.gist
+#--> 9 Paoni 1735 = 2019-06-16
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg2 = $TPC-Pittsburgh-eth.to-date;
-#--> 14 Säne 2011 = 21 June 2019
+say $TPC-Pittsburgh-eth.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg2.gist
+#--> 14 Säne 2011 = 2019-06-21
 
 =end code
 
@@ -531,7 +533,7 @@ source. Failing  that, the untrusted  source can include  a outrageous
 length in  a C<strftime> specifier and  this will drain your  PC's RAM
 very fast.
 
-=head2 Relations with :ver<0.0.x> classes
+=head2 Relations with :ver<0.0.x> classes and with core class Date
 
 Version 0.1.0 (and API 1) was  introduced to ease the conversions with
 other calendars  in which the  day is defined as  sunset-to-sunset. If
@@ -547,6 +549,12 @@ C<before-sunrise>) to C<daylight>, or it  may shift to the C<daylight>
 part of  the prior (or  next) date. This  means that a  roundtrip with
 cascade conversions  may give the  starting date,  or it may  give the
 date prior or after the starting date.
+
+If  you  install  C<<Date::Calendar::CopticEthiopic:ver<0.1.0>>>,  why
+would  you  refrain  from upgrading  other  C<Date::Calendar::>R<xxxx>
+classes?  So actually,  this issue  applies mainly  to the  core class
+C<Date>,  because   you  may  prefer  avoiding   the  installation  of
+C<Date::Calendar::Gregorian>.
 
 =head2 Time
 
@@ -565,6 +573,7 @@ L<https://en.wikipedia.org/wiki/Coptic_calendar>
 L<https://en.wikipedia.org/wiki/Ethiopian_calendar>
 
 L<https://www.funaba.org/cc>
+(website no longer works).
 
 L<https://www.tondering.dk/claus/calendar.html> - Claus Tøndering's
 calendar FAQ
@@ -623,6 +632,7 @@ or L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-g
 
 I<La saga des calendriers>, p 70-71, by Jean Lefort, published by I<Belin> (I<Pour la Science>), ISBN 2-90929-003-5
 See L<https://www.belin-editeur.com/la-saga-des-calendriers>
+(webpage no longer available).
 
 =head1 AUTHOR
 

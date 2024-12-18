@@ -70,7 +70,8 @@ my Date                     $TPC-Pittsburgh-grg;
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-eth.to-date;
-#--> 14 Säne 2011 = 21 June 2019
+say $TPC-Pittsburgh-eth.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg.gist
+#--> 14 Säne 2011 = 2019-06-21
 
 =end code
 

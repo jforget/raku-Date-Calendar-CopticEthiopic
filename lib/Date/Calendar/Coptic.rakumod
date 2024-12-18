@@ -70,7 +70,8 @@ my Date                     $TPC-Pittsburgh-grg;
 
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg  = $TPC-Pittsburgh-cop.to-date;
-#--> 9 Paoni 1735 = 16 June 2019
+say $TPC-Pittsburgh-cop.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg.gist
+#--> 9 Paoni 1735 = 2019-06-16
 
 =end code
 
@@ -84,16 +85,16 @@ use Date::Calendar::Coptic;
 my Date::Calendar::Coptic $dt-coptic;
 my Date                   $dt-greg;
 
-$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => after-sunset);
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => after-sunset());
 $dt-greg    = $dt-coptic.to-date;
 say $dt-greg.gist;   # --> 2024-11-13
 
 # on the other hand
-$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => before-sunrise);
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => before-sunrise());
 $dt-greg    = $dt-coptic.to-date;
 say $dt-greg.gist;   # --> 2024-11-14
 
-$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => daylight);
+$dt-coptic .= new(year => 1741, month => 3, day => 5, daypart => daylight());
 $dt-greg    = $dt-coptic.to-date;
 say $dt-greg.gist;   # --> 2024-11-14
 
