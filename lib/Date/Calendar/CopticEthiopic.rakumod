@@ -168,12 +168,12 @@ my Date                     $TPC-Pittsburgh-grg2;
 
 $TPC-Pittsburgh-cop .= new(year => 1735, month => 10, day => 9);
 $TPC-Pittsburgh-grg1 = $TPC-Pittsburgh-cop.to-date;
-say $TPC-Pittsburgh-cop.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg1.gist
+say $TPC-Pittsburgh-cop.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg1.gist;
 #--> 9 Paoni 1735 = 2019-06-16
 
 $TPC-Pittsburgh-eth .= new(year => 2011, month => 10, day => 14);
 $TPC-Pittsburgh-grg2 = $TPC-Pittsburgh-eth.to-date;
-say $TPC-Pittsburgh-eth.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg2.gist
+say $TPC-Pittsburgh-eth.strftime("%e %B %Y = "), $TPC-Pittsburgh-grg2.gist;
 #--> 14 Säne 2011 = 2019-06-21
 
 =end code
@@ -345,6 +345,8 @@ $d-orig .= new(year  => 1736
              , day   =>   10);
 $d-dest-push  = $d-orig.to-date("Date::Calendar::Ethiopic");
 $d-dest-pull .= new-from-date($d-orig);
+say $d-orig, ' ', $d-dest-push, ' ', $d-dest-pull;
+# --> 1736-01-10 2012-01-10 2012-01-10
 
 =end code
 
