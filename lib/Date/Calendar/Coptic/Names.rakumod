@@ -54,7 +54,7 @@ The month names come from L<https://en.wikipedia.org/wiki/Coptic_calendar>.
 
 The month abbreviations, the day names and the day abbreviations come from
 L<https://api.kde.org/4.x-api/kdelibs-apidocs/kdecore/html/kcalendarsystemcoptic_8cpp_source.html>.
-
+(no longer available)
 
 =head1 AUTHOR
 

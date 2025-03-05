@@ -48,6 +48,7 @@ the Ethiopic calendars).
 
 The month abbreviations, the day names and the day abbreviations come from
 L<https://api.kde.org/4.x-api/kdelibs-apidocs/kdecore/html/kcalendarsystemethiopian_8cpp_source.html>
+(no longer available)
 
 =head1 AUTHOR
 

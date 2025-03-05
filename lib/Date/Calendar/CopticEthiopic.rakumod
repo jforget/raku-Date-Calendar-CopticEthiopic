@@ -580,6 +580,9 @@ L<https://www.funaba.org/cc>
 L<https://www.tondering.dk/claus/calendar.html> - Claus Tøndering's
 calendar FAQ
 
+L<https://www.ephemeride.com/calendrier/autrescalendriers/21/autres-types-de-calendriers.html>
+(in French)
+
 =head2 Raku Software
 
 L<Date::Calendar::Strftime|https://raku.land/zef:jforget/Date::Calendar::Strftime>
@@ -620,6 +623,9 @@ L<Date::Converter|https://metacpan.org/pod/Date::Converter>
 date(1), strftime(3)
 
 C<calendar/cal-coptic.el>  in Emacs.
+
+L<https://pypi.org/project/convertdate/>
+or L<https://convertdate.readthedocs.io/en/latest/modules/coptic.html>
 
 CALENDRICA 4.0 -- Common Lisp, which can be download in the "Resources" section of
 L<https://www.cambridge.org/us/academic/subjects/computer-science/computing-general-interest/calendrical-calculations-ultimate-edition-4th-edition?format=PB&isbn=9781107683167>
