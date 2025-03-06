@@ -27,7 +27,7 @@ use Date::Calendar::Maya::Spinden;
 use Date::Calendar::Persian;
 use Date::Calendar::Persian::Astronomical;
 
-my $ver-co = '0.1.0';
+my $ver-co = '0.1.1';
 my @data  = (
        (1738,  9,  7, after-sunset,   'ba', "Jamál 18 Jam 0179 ☽"         , "Tky 07 Pas 1738 ☽", "Gregorian: 2022-05-14")
      , (1738,  9,  7, before-sunrise, 'ba', "Jamál 18 Jam 0179 ☾"         , "Tky 07 Pas 1738 ☾", "Gregorian: 2022-05-15")
@@ -38,9 +38,9 @@ my @data  = (
      , (1740,  4, 14, after-sunset,   'co', "Tkyriakē 14 Kia 1740 ☽"      , "Tky 14 Kia 1740 ☽", "Gregorian: 2023-12-23")
      , (1740,  4, 14, before-sunrise, 'co', "Tkyriakē 14 Kia 1740 ☾"      , "Tky 14 Kia 1740 ☾", "Gregorian: 2023-12-24")
      , (1740,  4, 14, daylight,       'co', "Tkyriakē 14 Kia 1740 ☼"      , "Tky 14 Kia 1740 ☼", "Gregorian: 2023-12-24")
-     , (1739,  2, 12, after-sunset,   'et', "Ehud 12 Teq 2015 ☽"          , "Psa 12 Pao 1739 ☽", "Gregorian: 2022-10-21")
-     , (1739,  2, 12, before-sunrise, 'et', "Ehud 12 Teq 2015 ☾"          , "Psa 12 Pao 1739 ☾", "Gregorian: 2022-10-22")
-     , (1739,  2, 12, daylight,       'et', "Ehud 12 Teq 2015 ☼"          , "Psa 12 Pao 1739 ☼", "Gregorian: 2022-10-22")
+     , (1739,  2, 12, after-sunset,   'et', "Kidamme 12 Teq 2015 ☽"       , "Psa 12 Pao 1739 ☽", "Gregorian: 2022-10-21")
+     , (1739,  2, 12, before-sunrise, 'et', "Kidamme 12 Teq 2015 ☾"       , "Psa 12 Pao 1739 ☾", "Gregorian: 2022-10-22")
+     , (1739,  2, 12, daylight,       'et', "Kidamme 12 Teq 2015 ☼"       , "Psa 12 Pao 1739 ☼", "Gregorian: 2022-10-22")
      , (1741,  7, 23, after-sunset,   'fr', "Primidi 11 Ger 0233 ☽"       , "Psh 23 Par 1741 ☽", "Gregorian: 2025-03-31")
      , (1741,  7, 23, before-sunrise, 'fr', "Duodi 12 Ger 0233 ☾"         , "Psh 23 Par 1741 ☾", "Gregorian: 2025-04-01")
      , (1741,  7, 23, daylight,       'fr', "Duodi 12 Ger 0233 ☼"         , "Psh 23 Par 1741 ☼", "Gregorian: 2025-04-01")

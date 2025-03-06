@@ -2,18 +2,18 @@ Revision history for Date-Calendar-CopticEthiopic
 
 0.1.1 released on...
 
-0.1.0 released on Thursday 2024-12-19, or Ptiou 10 Koiak 1741, or Arb 10 Taḫśaś 2017
+0.1.0 released on Thursday 2024-12-19, or Ptiou 10 Koiak 1741, or Hamus 10 Taḫśaś 2017
     - use file extensions '.rakumod' and '.rakutest' instead of '.pm6' and '.t'
     - add a "daypart" method, so the "after sunset" dates will be properly converted from / to midnight-to-midnight calendars
 
-0.0.3, released on Thursday 2024-10-24, or Ptiou 14 Paopi 1741, or Arb 14 Ṭəqəmt 2017
+0.0.3, released on Thursday 2024-10-24, or Ptiou 14 Paopi 1741, or Hamus 14 Ṭəqəmt 2017
     - add an "api" property to the classes
     - migration from CPAN6 to zef
     - fewer t/*.t tests and adding xt/*.t tests
 
-0.0.2, released on palindrome day Sunday 2020-02-02, or Tkyriakē 24 Tobi 1736 or Segno 24 Ṭərr 2012
+0.0.2, released on palindrome day Sunday 2020-02-02, or Tkyriakē 24 Tobi 1736 or Ihud 24 Ṭərr 2012
     - Fixing a bug when computing the 'day-of-year' attribute
     - Better code coverage in the test files
 
-0.0.1, released on Wednesday 4th December 2019, Peftoou 24 Hathor 1736, Hamus 24 Ḫədar 2012
+0.0.1, released on Wednesday 4th December 2019, Peftoou 24 Hathor 1736, Rob 24 Ḫədar 2012
     - Initial version

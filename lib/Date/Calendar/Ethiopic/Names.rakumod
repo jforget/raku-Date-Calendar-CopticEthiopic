@@ -9,8 +9,8 @@ my @month-names = < Mäskäräm Ṭəqəmt  Ḫədar
                     Säne     Ḥamle   Nähase
                     Ṗagume >;
 my @month-abbr = < Mes Teq Hed Tah Ter Yak Mag Miy Gen Sen Ham Neh Pag >;
-my @day-names  = < Segno Maksegno Rob Hamus Arb Qedame Ehud >;
-my @day-abbr   = < Seg   Mak      Rob Ham   Arb Qed    Ehu >;
+my @day-names  = < Ihud Sanyo Maksanyo Rob Hamus Arb Kidamme >;
+my @day-abbr   = < Ihu  San   Mak      Rob Ham   Arb Kid     >;
 
 our sub month-name(Int:D $month --> Str) {
   return @month-names[$month - 1];
@@ -46,9 +46,13 @@ The month names come from L<https://en.wikipedia.org/wiki/Coptic_calendar>
 (not a typo,  the page gives the  month names for both  the Coptic and
 the Ethiopic calendars).
 
-The month abbreviations, the day names and the day abbreviations come from
+The month abbreviations come from
 L<https://api.kde.org/4.x-api/kdelibs-apidocs/kdecore/html/kcalendarsystemethiopian_8cpp_source.html>
 (no longer available)
+
+The day names come from
+L<https://www.ephemeride.com/calendrier/autrescalendriers/21/autres-types-de-calendriers.html>
+and the day abbreviations are built from these day names.
 
 =head1 AUTHOR
 

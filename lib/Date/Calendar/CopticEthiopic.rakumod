@@ -60,7 +60,7 @@ method _build-from-args(Int $year, Int $month, Int $day, Int $daypart) {
   $!daycount    = $daycount;
 
   # computing week-related derived attributes
-  my Int $doy-pef   = $doy - $dow + 4; # day-of-year value for the nearest Peftoou / Hamus / Wednesday
+  my Int $doy-pef   = $doy - $dow + 4; # day-of-year value for the nearest Peftoou / Rob / Wednesday
   my Int $week-year = $year;
   if $doy-pef ≤ 0 {
     -- $week-year;
@@ -150,7 +150,7 @@ $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 say $Perlcon-Riga-cop.strftime("%A %e %B %Y");
 #--> Peftoou 1 Mesori 1735
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
-#--> Hamus 1 Nähase 2011
+#--> Rob 1 Nähase 2011
 
 =end code
 
@@ -196,19 +196,19 @@ $d-grg .= new('2024-11-13', daypart => before-sunrise());
 $d-cop .= new-from-date($d-grg);
 $d-eth .= new-from-date($d-grg);
 say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
-# -->  Peftoou  4 Hathor 1741 Hamus  4 Ḫədar 2017
+# -->  Peftoou  4 Hathor 1741 Rob  4 Ḫədar 2017
 
 $d-grg .= new('2024-11-13', daypart => daylight());
 $d-cop .= new-from-date($d-grg);
 $d-eth .= new-from-date($d-grg);
 say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
-# -->  Peftoou  4 Hathor 1741 Hamus  4 Ḫədar 2017 (again)
+# -->  Peftoou  4 Hathor 1741 Rob  4 Ḫədar 2017 (again)
 
 $d-grg .= new('2024-11-13', daypart => after-sunset());
 $d-cop .= new-from-date($d-grg);
 $d-eth .= new-from-date($d-grg);
 say $d-cop.strftime("%A %e %B %Y"), $d-eth.strftime(" %A %e %B %Y");
-# -->  Ptiou  5 Hathor 1741 Arb  5 Ḫədar 2017
+# -->  Ptiou  5 Hathor 1741 Hamus  5 Ḫədar 2017
 
 =end code
 
@@ -280,14 +280,14 @@ The name of the day within  the week, as a 3-char string.
 =head3 day-of-week
 
 The number  of the  day within  the week  (1 for  sunday /  Tkyriakē /
-Segno, 7 for saturday / Psabbaton / Ehud).
+Ihud, 7 for saturday / Psabbaton / Kidamme).
 
 =head3 week-number
 
 The number of  the week within the year,  1 to 52 (or even  53 on some
 years). Similar to the "ISO date"  as defined for Gregorian date. Week
 number  1 is  the Sun→Sat  span that  contains the  first Wednesday  /
-Peftoou / Hamus of the year. This  first week may start as soon as the
+Peftoou / Rob  of the year. This  first week may start as  soon as the
 3rd  epagomene day  (or 4th  on leap  year) or  as late  as 4  Thout /
 Mäskäräm. Likewise, the last  week of the year may end  as soon as the
 2nd epagomene  day or  it may  last until 3rd  Thout of  the following
@@ -301,8 +301,8 @@ above, the last days  of the year and the first  days of the following
 year can  be sort-of transferred  to the other year.  The C<week-year>
 attribute reflects this transfer. While the real year always begins on
 1st Thout / Mäskäräm and ends on  the 5th (6th if leap) epagomene day,
-the C<week-year>  always begins on  Sunday /  Tkyriakē / Segno  and it
-always ends 364 or 371 days later on Saturday / Psabbaton / Ehud.
+the C<week-year>  always begins  on Sunday  / Tkyriakē  / Ihud  and it
+always ends 364 or 371 days later on Saturday / Psabbaton / Kidamme.
 
 =head3 day-of-year
 

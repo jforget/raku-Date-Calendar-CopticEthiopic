@@ -55,7 +55,7 @@ $Perlcon-Riga-grg .= new(2019, 8, 7);
 $Perlcon-Riga-eth .= new-from-date($Perlcon-Riga-grg);
 
 say $Perlcon-Riga-eth.strftime("%A %e %B %Y");
-#--> Hamus 1 Nähase 2011
+#--> Rob 1 Nähase 2011
 
 =end code
 

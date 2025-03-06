@@ -57,8 +57,8 @@ is($de.daycount   , 58807);
 is($de.gist       , "2012-03-10");
 is($de.month-name , 'Ḫədar');
 is($de.month-abbr , 'Hed');
-is($de.day-name   , 'Hamus');
-is($de.day-abbr   , 'Ham');
+is($de.day-name   , 'Rob');
+is($de.day-abbr   , 'Rob');
 is($de.daypart    , daylight);
 
 
